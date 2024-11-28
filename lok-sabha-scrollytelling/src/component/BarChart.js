@@ -1,5 +1,184 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
+// import ComparativeChart from "./ComparativeChart";
+
+export const ComparativeChart = () => {
+  const svgRef = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (svgRef.current) {
+      observer.observe(svgRef.current);
+    }
+
+    return () => {
+      if (svgRef.current) {
+        observer.unobserve(svgRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      const comparativeData = [
+        { month: "Oct 2023", bjp: 37, indAlliance: 41, others: 22 },
+        { month: "May 2024", bjp: 40, indAlliance: 38, others: 22 },
+      ];
+
+      const margin = { top: 20, right: 150, bottom: 50, left: 40 };
+
+      const width = window.innerWidth * 0.45 - margin.left - margin.right;
+      const height = 300 - margin.top - margin.bottom;
+
+      d3.select(svgRef.current).selectAll("*").remove();
+
+      const svg = d3
+        .select(svgRef.current)
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      const x0 = d3
+        .scaleBand()
+        .domain(comparativeData.map((d) => d.month))
+        .rangeRound([0, width])
+        .padding(0.2);
+
+      const x1 = d3
+        .scaleBand()
+        .domain(["BJP", "IND Alliance", "Others"])
+        .rangeRound([0, x0.bandwidth()])
+        .padding(0.05);
+
+      const y = d3.scaleLinear().domain([0, 50]).nice().rangeRound([height, 0]);
+
+      svg
+        .append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x0));
+
+      svg.append("g").call(d3.axisLeft(y));
+
+      const barsGroup = svg
+        .append("g")
+        .selectAll(".month-group")
+        .data(comparativeData)
+        .enter()
+        .append("g")
+        .attr("transform", (d) => `translate(${x0(d.month)}, 0)`);
+
+      barsGroup
+        .selectAll("rect")
+        .data((d) => [
+          { party: "BJP", value: d.bjp },
+          { party: "IND Alliance", value: d.indAlliance },
+          { party: "Others", value: d.others },
+        ])
+        .enter()
+        .append("rect")
+        .attr("x", (d) => x1(d.party))
+        .attr("y", (d) => y(d.value))
+        .attr("width", x1.bandwidth())
+        .attr("height", (d) => height - y(d.value))
+        .attr("fill", (d) =>
+          d.party === "BJP"
+            ? "#ff7f00"
+            : d.party === "IND Alliance"
+            ? "#1f77b4"
+            : "#6c757d"
+        );
+      const legend = svg
+        .append("g")
+        .attr("transform", `translate(${width + 30}, 20)`);
+
+      const legendData = [
+        { party: "BJP", color: "#ff7f00" },
+        { party: "IND Alliance", color: "#1f77b4" },
+        { party: "Others", color: "#6c757d" },
+      ];
+
+      legend
+        .selectAll(".legend-item")
+        .data(legendData)
+        .enter()
+        .append("g")
+        .attr("class", "legend-item")
+        .attr("transform", (d, i) => `translate(0, ${i * 30})`)
+        .each(function (d) {
+          d3.select(this)
+            .append("rect")
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", d.color);
+
+          d3.select(this)
+            .append("text")
+            .attr("x", 25)
+            .attr("y", 15)
+            .style("font-size", "14px")
+            .text(d.party);
+        });
+    }
+  }, [isVisible]);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        padding: "20px",
+        maxWidth: "100%",
+        margin: "0 auto",
+      }}
+    >
+      <div style={{ flex: "0 0 50%" }}>
+        <svg ref={svgRef}></svg>
+      </div>
+      {isVisible && (
+        <div
+          style={{
+            flex: "0 0 45%",
+            padding: "20px",
+            backgroundColor: "white",
+            borderRadius: "8px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            marginLeft: "20px",
+          }}
+        >
+          <h3 style={{ color: "#333", marginBottom: "15px", fontSize: "18px" }}>
+            Comparison of Oct 2023 and May 2024
+          </h3>
+          <p style={{ color: "#666", lineHeight: "1.4", fontSize: "14px" }}>
+            <div>
+              <p>
+                Comparing the polling percentages between October 2023 and May
+                2024, we can observe:
+              </p>
+              <ul>
+                <li>BJP increased from 37% to 40%, showing a 3% gain.</li>
+                <li>IND Alliance decreased from 41% to 38%, losing 3%.</li>
+                <li>Others remained stable at 22%.</li>
+              </ul>
+              <p>
+                This shift suggests a potential change in voter preferences over
+                the 7-month period.
+              </p>
+            </div>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const BarChart = () => {
   const svgRef = useRef();
@@ -26,6 +205,18 @@ const BarChart = () => {
     { month: "June 2024", bjp: 39, indAlliance: 39, others: 22 },
   ];
 
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
@@ -33,8 +224,11 @@ const BarChart = () => {
         height: window.innerHeight,
       });
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const debouncedHandleResize = debounce(handleResize, 100);
+    window.addEventListener("resize", debouncedHandleResize);
+    // window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", debouncedHandleResize);
+    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -279,14 +473,16 @@ const BarChart = () => {
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", textAlign: "center" }}>
-      <h1 style={{ color: "#333", marginBottom: "20px" }}>
-        Indian Election Vote Share - 2023 to 2024
-      </h1>
       <h2 style={{ color: "#333", marginBottom: "20px" }}>
-        Political Party Polling Percentages month-wise
+        Political Party Polling Percentages by month wise
       </h2>
       <MonthSelector />
       <svg ref={svgRef} style={{ maxWidth: "100%", height: "auto" }}></svg>
+      {/* <div style={{ height: "100vh" }}></div> */}
+      {/* <ComparativeChart /> */}
+      <section className="section ComparativeChart">
+        <ComparativeChart />
+      </section>
     </div>
   );
 };
