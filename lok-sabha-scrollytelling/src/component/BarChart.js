@@ -1809,7 +1809,7 @@ const ScrollyContainer = ({ data, events }) => {
   };
 
   // Get visible months based on current step
-  const visibleMonths = data.slice(0, currentStep + 1); // Include current month
+  const visibleMonths = data.slice(0, currentStep + 2); // Include current month
 
   return (
     <div style={{ display: "flex" }}>
