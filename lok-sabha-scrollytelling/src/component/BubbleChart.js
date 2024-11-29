@@ -71,7 +71,7 @@ const data = [
 
   useEffect(() => {
     const width = 900,
-    height = 700,
+    height = 680,
     margin = { top: 100, right: 50, bottom: 50, left: 80 };
   
   const svg = d3
