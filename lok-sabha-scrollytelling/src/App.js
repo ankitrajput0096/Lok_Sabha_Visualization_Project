@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import HeatMap from "./component/HeatMap";
+import BubbleChart from "./component/BubbleChart";
 import PieChart from "./component/PieChart";
 import ThematicMap from "./component/ThematicMap";
 import Timeline from "./component/Timeline";
@@ -22,11 +22,11 @@ function App() {
           <button
             onClick={() =>
               document
-                .querySelector(".heatmap")
+                .querySelector(".BubbleChart")
                 .scrollIntoView({ behavior: "smooth" })
             }
           >
-            Heatmap
+            BubbleChart
           </button>
           <button
             onClick={() =>
@@ -68,10 +68,10 @@ function App() {
       </header>
 
       <main>
-        <section className="section heatmap" style={{marginTop:"5%"}}>
-          <HeatMap />
+        <section className="section BubbleChart" style={{marginTop:"5%"}}>
+          <BubbleChart />
         </section>
-        <section className="section heatmap scrolly" style={{ marginTop: "5%", display:"flex" }}>
+        <section className="section BubbleChart scrolly" style={{ display:"flex" }}>
   <BubbleChartScrolly />
 </section>
 
