@@ -4,6 +4,7 @@ import HeatMap from "./component/HeatMap";
 import PieChart from "./component/PieChart";
 import ThematicMap from "./component/ThematicMap";
 import Timeline from "./component/Timeline";
+import BubbleChartScrolly from "./component/BubbleChartScrolly"
 import useScrollAnimations from "./hooks/useScrollAnimations";
 
 function App() {
@@ -30,9 +31,13 @@ function App() {
       </header>
 
       <main>
-        <section className="section heatmap">
+        <section className="section heatmap" style={{marginTop:"5%"}}>
           <HeatMap />
         </section>
+        <section className="section heatmap scrolly" style={{ marginTop: "5%", display:"flex" }}>
+  <BubbleChartScrolly />
+</section>
+
         <section className="section timeline">
           <Timeline />
         </section>
