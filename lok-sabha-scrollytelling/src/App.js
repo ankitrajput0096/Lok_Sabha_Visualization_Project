@@ -85,19 +85,19 @@ function App() {
         <section className="section piechart">
           <PieChart />
         </section>
-        <div className="App">
+      </main>
+      <div className="">
           <ImagesForMap />
         </div>
-        <div className="App">
+        <div className="">
           <ScrollJackingComponent />
         </div>
-        <section className="section thematicmap">
+      <div className="">
           <ChoroplethMap />
-        </section>
-        <div className="App">
+        </div>
+        <div className="">
           <ImagesForMap2 />
         </div>
-      </main>
 
       <footer>
         <p>Lok Sabha Elections 2024 | Scrollytelling Visualization</p>

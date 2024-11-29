@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 import myImage2 from "../photos/photo8.avif"; // Adjust the path to the image
-import myImage1 from "../photos/photo9.jpeg"; // Adjust the path to the image
+import myImage1 from "../photos/photo4.jpg"; // Adjust the path to the image
 
 const styles = {
   parent_container: {
