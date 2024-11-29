@@ -1,25 +1,54 @@
-import { color } from 'd3';
+import { color, zoom } from 'd3';
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
+import myImage2 from "../photos/photo8.avif"; // Adjust the path to the image
+import myImage1 from "../photos/photo9.jpeg"; // Adjust the path to the image
 
 const styles = {
+  parent_container: {
+    position: 'relative',
+    width: '300px', /* Set the desired width of the parent container */
+    height: '300px', /* Set the desired height of the parent container */
+    overflow: 'hidden', /* Prevent the image from overflowing */
+    border: '2px solid #ddd' /* Optional: add a border to see boundaries */
+  },
+  imageCss: {
+    position: 'absolute', /* Positioning the image inside the container */
+    top: '50%',
+    left: '50%',
+    width: '150%', /* Increase width to zoom */
+    height: 'auto', /* Maintain aspect ratio */
+    transform: 'translate(-50%, -50%)', /* Center the image */
+    objectFit: 'cover', /* Ensures image covers the container */
+    zoom: '150%'
+  },
   graphicContainer: {
-    padding: '10vh 2vw 10vh',
+    padding: '7vh 4vw 7vh',
     display: 'flex',
     justifyContent: 'space-between',
     color: 'black'
   },
   graphic: {
-    //flexBasis: '60%',
     position: 'sticky',
     width: '100%',
-    height: '60vh',
+    height: '70vh',
     top: '20vh',
     backgroundColor: '#aaa',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden', // Ensure content does not overflow the container
+    '& img': {
+      maxWidth: '100%',
+      maxHeight: '100%',
+      objectFit: 'contain', // Ensure the image scales while maintaining aspect ratio
+      transition: 'transform 0.3s ease', // Smooth zoom transition
+      zoom: '180%'
+    },
+    '& img:hover': {
+      transform: 'scale(1.1)', // Slightly enlarge the image on hover
+    },
     '& p': {
       fontSize: '5rem',
       fontWeight: 700,
@@ -27,7 +56,6 @@ const styles = {
       color: '#fff',
     },
   },
-  // css for left box
   scroller: {
     flexBasis: '0.1%',
   },
@@ -35,7 +63,6 @@ const styles = {
     margin: '0 auto 3rem auto',
     padding: '180px 0',
     visibility: 'hidden',
-    //border: '1px solid #333',
     '& p': {
       textAlign: 'center',
       padding: '1rem',
@@ -56,7 +83,7 @@ class Demo extends PureComponent {
   };
 
   onStepEnter = e => {
-    const { data, entry, direction} = e;
+    const { data } = e;
     this.setState({ data });
   };
 
@@ -73,6 +100,11 @@ class Demo extends PureComponent {
   render() {
     const { data, steps, progress } = this.state;
     const { classes } = this.props;
+
+    const img = data === 10 || data === 0
+      ? <img src={myImage1} alt="Description of the image" class="imageCss" />
+      : <img src={myImage2} alt="Description of the image" class="imageCss" />;
+
     return (
       <div>
         <div className={classes.graphicContainer}>
@@ -80,7 +112,6 @@ class Demo extends PureComponent {
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
-              //progress
               onStepProgress={this.onStepProgress}
               offset="0.3"
             >
@@ -93,10 +124,6 @@ class Demo extends PureComponent {
                 return (
                   <Step data={value} key={value}>
                     <div className={classes.step} style={{ background }}>
-                      {/* <p>step value: {value}</p> */}
-                      {/* <p style={{ visibility }}>
-                        {Math.round(progress * 1000) / 10 + '%'}
-                      </p> */}
                     </div>
                   </Step>
                 );
@@ -104,7 +131,11 @@ class Demo extends PureComponent {
             </Scrollama>
           </div>
           <div className={classes.graphic}>
-            <p>I love cars {data}</p>
+          <div class="parent-container">
+          {img}
+          </div>
+
+
           </div>
         </div>
       </div>

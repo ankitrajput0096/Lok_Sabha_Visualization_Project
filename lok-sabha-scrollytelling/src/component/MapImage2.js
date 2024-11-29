@@ -1,10 +1,9 @@
-// import { color } from 'd3';
+import { color, zoom } from 'd3';
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import myImage3 from "../photos/Picture4.jpg"; // Adjust the path to the image
-import myImage4 from "../photos/photo6.jpg"; // Adjust the path to the image
-import myImage5 from "../photos/photo10.jpg"; // Adjust the path to the image
+import myImage2 from "../photos/Picture1.jpg"; // Adjust the path to the image
+import myImage1 from "../photos/Picture2.png"; // Adjust the path to the image
 
 const styles = {
   parent_container: {
@@ -28,12 +27,12 @@ const styles = {
     padding: '7vh 4vw 7vh',
     display: 'flex',
     justifyContent: 'space-between',
+    color: 'black'
   },
   graphic: {
-    flexBasis: '60%',
     position: 'sticky',
     width: '100%',
-    height: '55vh',
+    height: '70vh',
     top: '20vh',
     backgroundColor: '#aaa',
     display: 'flex',
@@ -41,11 +40,11 @@ const styles = {
     justifyContent: 'center',
     overflow: 'hidden', // Ensure content does not overflow the container
     '& img': {
-      maxWidth: '110%',
-      maxHeight: '110%',
+      maxWidth: '100%',
+      maxHeight: '100%',
       objectFit: 'contain', // Ensure the image scales while maintaining aspect ratio
       transition: 'transform 0.3s ease', // Smooth zoom transition
-      zoom: '280%'
+      zoom: '250%'
     },
     '& img:hover': {
       transform: 'scale(1.1)', // Slightly enlarge the image on hover
@@ -57,14 +56,13 @@ const styles = {
       color: '#fff',
     },
   },
-  // css for left box
   scroller: {
-    flexBasis: '35%',
+    flexBasis: '0.1%',
   },
   step: {
     margin: '0 auto 3rem auto',
     padding: '180px 0',
-    // border: '5px solid',
+    visibility: 'hidden',
     '& p': {
       textAlign: 'center',
       padding: '1rem',
@@ -85,7 +83,7 @@ class Demo extends PureComponent {
   };
 
   onStepEnter = e => {
-    const { data, entry, direction} = e;
+    const { data } = e;
     this.setState({ data });
   };
 
@@ -99,32 +97,13 @@ class Demo extends PureComponent {
     this.setState({ progress });
   };
 
-
-
   render() {
     const { data, steps, progress } = this.state;
     const { classes } = this.props;
 
-    let img = <img src={myImage3} alt="Description of the image" class="imageCss"/>;
-    if(data === 0 || data === 10) {
-      img = <img src={myImage3} alt="Description of the image" class="imageCss"/>;
-    } else if(data === 20) {
-      img = <img src={myImage4} alt="Description of the image" class="imageCss"/>;
-    } else {
-      img = <img src={myImage5} alt="Description of the image" class="imageCss"/>;
-    }
-
-    let description = <p>Record Voter Turnout: Approximately 642 million voters participated in the election, marking the highest voter turnout in India's history. Notably, 312 million of these were women, reflecting a significant increase in female electoral participation. </p>
-    if(data === 0 || data === 10) {
-      description = <p>Record Voter Turnout: Approximately 642 million voters participated in the election, marking the highest voter turnout in India's history. Notably, 312 million of these were women, reflecting a significant increase in female electoral participation. </p>
-    } else if(data === 20) {
-      description = <p>BJP's Loss of Single-Party Majority: The Bharatiya Janata Party (BJP), led by Prime Minister Narendra Modi, secured 240 seats, down from 303 in the 2019 election. This loss resulted in the BJP falling short of the 272-seat threshold required for a single-party majority, necessitating reliance on coalition partners within the National Democratic Alliance (NDA) to form the government.</p>;
-    } else {
-      description = <p>Introduction of 'Vote-from-Home' Facility: For the first time in a Lok Sabha election, the Election Commission of India implemented a 'vote-from-home' option for voters aged 85 and above, as well as for persons with disabilities. This initiative aimed to enhance electoral participation among these groups by providing greater accessibility.</p>;
-    }
-
-
-
+    const img = data === 10 || data === 0
+      ? <img src={myImage1} alt="Description of the image" class="imageCss" />
+      : <img src={myImage2} alt="Description of the image" class="imageCss" />;
 
     return (
       <div>
@@ -133,33 +112,18 @@ class Demo extends PureComponent {
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
-              progress
               onStepProgress={this.onStepProgress}
-              offset="0.6"
+              offset="0.3"
             >
               {steps.map(value => {
                 const isVisible = value === data;
-                const backgroundColor = isVisible
+                const background = isVisible
                   ? `rgba(44,127,184, ${progress})`
                   : 'white';
-
-                // const background = isVisible
-                // ? `white`
-                // : 'white';
-
                 const visibility = isVisible ? 'visible' : 'hidden';
                 return (
                   <Step data={value} key={value}>
-
-                    {/* css for the left box can be changes here */}
-                    <div className={classes.step} style={
-                        
-                        { color: backgroundColor, }
-                        
-                        
-                        }>
-                      {/* <p>step value: {value}</p> */}
-                      {description}
+                    <div className={classes.step} style={{ background }}>
                     </div>
                   </Step>
                 );
@@ -167,7 +131,11 @@ class Demo extends PureComponent {
             </Scrollama>
           </div>
           <div className={classes.graphic}>
-            {img}
+          <div class="parent-container">
+          {img}
+          </div>
+
+
           </div>
         </div>
       </div>

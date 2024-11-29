@@ -2,30 +2,13 @@
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import myImage3 from "../photos/Picture4.jpg"; // Adjust the path to the image
+import myImage3 from "../photos/photo3.jpeg"; // Adjust the path to the image
 import myImage4 from "../photos/photo6.jpg"; // Adjust the path to the image
-import myImage5 from "../photos/photo10.jpg"; // Adjust the path to the image
-
+import myImage5 from "../photos/photo5.avif"; // Adjust the path to the image
+import ThematicMap from './ThematicMap';
 const styles = {
-  parent_container: {
-    position: 'relative',
-    width: '300px', /* Set the desired width of the parent container */
-    height: '300px', /* Set the desired height of the parent container */
-    overflow: 'hidden', /* Prevent the image from overflowing */
-    border: '2px solid #ddd' /* Optional: add a border to see boundaries */
-  },
-  imageCss: {
-    position: 'absolute', /* Positioning the image inside the container */
-    top: '50%',
-    left: '50%',
-    width: '150%', /* Increase width to zoom */
-    height: 'auto', /* Maintain aspect ratio */
-    transform: 'translate(-50%, -50%)', /* Center the image */
-    objectFit: 'cover', /* Ensures image covers the container */
-    zoom: '150%'
-  },
   graphicContainer: {
-    padding: '7vh 4vw 7vh',
+    padding: '10vh 2vw 10vh',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -33,23 +16,12 @@ const styles = {
     flexBasis: '60%',
     position: 'sticky',
     width: '100%',
-    height: '55vh',
+    height: '40vh',
     top: '20vh',
     backgroundColor: '#aaa',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden', // Ensure content does not overflow the container
-    '& img': {
-      maxWidth: '110%',
-      maxHeight: '110%',
-      objectFit: 'contain', // Ensure the image scales while maintaining aspect ratio
-      transition: 'transform 0.3s ease', // Smooth zoom transition
-      zoom: '280%'
-    },
-    '& img:hover': {
-      transform: 'scale(1.1)', // Slightly enlarge the image on hover
-    },
     '& p': {
       fontSize: '5rem',
       fontWeight: 700,
@@ -64,7 +36,7 @@ const styles = {
   step: {
     margin: '0 auto 3rem auto',
     padding: '180px 0',
-    // border: '5px solid',
+    border: '5px solid',
     '& p': {
       textAlign: 'center',
       padding: '1rem',
@@ -80,7 +52,7 @@ const styles = {
 class Demo extends PureComponent {
   state = {
     data: 0,
-    steps: [10, 20, 30],
+    steps: [1, 2, 3, 4, 5,6,7, 8],
     progress: 0,
   };
 
@@ -105,13 +77,13 @@ class Demo extends PureComponent {
     const { data, steps, progress } = this.state;
     const { classes } = this.props;
 
-    let img = <img src={myImage3} alt="Description of the image" class="imageCss"/>;
+    let img = <img src={myImage3} alt="Description of the image" />;
     if(data === 0 || data === 10) {
-      img = <img src={myImage3} alt="Description of the image" class="imageCss"/>;
+      img = <img src={myImage3} alt="Description of the image" />;
     } else if(data === 20) {
-      img = <img src={myImage4} alt="Description of the image" class="imageCss"/>;
+      img = <img src={myImage4} alt="Description of the image" />;
     } else {
-      img = <img src={myImage5} alt="Description of the image" class="imageCss"/>;
+      img = <img src={myImage5} alt="Description of the image" />;
     }
 
     let description = <p>Record Voter Turnout: Approximately 642 million voters participated in the election, marking the highest voter turnout in India's history. Notably, 312 million of these were women, reflecting a significant increase in female electoral participation. </p>
@@ -123,19 +95,63 @@ class Demo extends PureComponent {
       description = <p>Introduction of 'Vote-from-Home' Facility: For the first time in a Lok Sabha election, the Election Commission of India implemented a 'vote-from-home' option for voters aged 85 and above, as well as for persons with disabilities. This initiative aimed to enhance electoral participation among these groups by providing greater accessibility.</p>;
     }
 
+    const phases = [
+      "Phase I (April 19)",
+      "Phase II (April 26)",
+      "Phase III (May 7)",
+      "Phase IV (May 13)",
+      "Phase V (May 20)",
+      "Phase VI (May 25)",
+      "Phase VII (June 1)",
+      "All Winners",
+    ];
+
+    let selectedPhase = phases[data];
 
 
+    const phasesText = [
+      `
+      Highlights: Re-polling was necessitated in certain areas due to incidents of violence and technical issues. For instance, 11 polling stations in Inner Manipur underwent re-polling on April 22, and eight stations in Arunachal Pradesh on April 24. 
+      `,
+      `
+      Highlights: Notable candidates included Rahul Gandhi and Hema Malini. Re-polling occurred in select areas due to disruptions; for example, a polling station in Chamarajanagar, Karnataka, on April 29, and six stations in Outer Manipur on April 30. 
+      `,
+      `
+      Highlights: Prime Minister Narendra Modi cast his vote in this phase in Gujarat. The voter turnout was approximately 65.68%, with 17.24 crore citizens eligible to vote. 
+      `,
+      `
+      Highlights: This phase included key regions such as parts of Uttar Pradesh and Bihar. Voter participation was robust, reflecting the electorate's engagement. 
+      `,
+      `
+      Highlights: Voting took place in significant areas, including parts of Rajasthan and Madhya Pradesh. Despite high temperatures, voter turnout remained steady. 
+      `,
+      `
+      Highlights: Delhi was among the regions that voted in this phase. The Election Commission implemented measures to ensure smooth polling amid the summer heat. 
+      `,
+      `
+      Highlights: This final phase covered areas in Punjab and parts of Uttar Pradesh. Re-polling was ordered in two booths in West Bengal due to reported irregularities.
+      `
+    ,
+    `
+    In the 2024 Lok Sabha elections, the Bharatiya Janata Party (BJP) secured 240 seats, falling short of the 272 needed for a single-party majority. This marks the first time since 2014 that the BJP has not achieved an absolute majority, highlighting a shift towards coalition politics in India's parliamentary landscape.
+    `
+    ];
+      
+      let selectedPhaseText = phasesText[data];
 
     return (
       <div>
         <div className={classes.graphicContainer}>
+          <div className={classes.graphic}>
+              <ThematicMap selectedPhase={selectedPhase} />
+          </div>
           <div className={classes.scroller}>
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
               progress
               onStepProgress={this.onStepProgress}
-              offset="0.6"
+              offset="0.5"
             >
               {steps.map(value => {
                 const isVisible = value === data;
@@ -159,16 +175,14 @@ class Demo extends PureComponent {
                         
                         }>
                       {/* <p>step value: {value}</p> */}
-                      {description}
+                      {selectedPhaseText}
                     </div>
                   </Step>
                 );
               })}
             </Scrollama>
           </div>
-          <div className={classes.graphic}>
-            {img}
-          </div>
+
         </div>
       </div>
     );

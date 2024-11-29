@@ -8,7 +8,8 @@ import useScrollAnimations from "./hooks/useScrollAnimations";
 import BarChart from "./component/BarChart";
 import ScrollJackingComponent from "./component/ScrollSwitchView";
 import ImagesForMap from "./component/MapImage";
-import ChoroplethMap from "./component/ChoroplethMap";
+import ImagesForMap2 from "./component/MapImage2";
+import ChoroplethMap from "./component/ScrollSwitchView2";
 
 function App() {
   useScrollAnimations();
@@ -88,10 +89,9 @@ function App() {
         <section className="section thematicmap">
           <ChoroplethMap />
         </section>
-        
-        <section className="section thematicmap">
-          <ThematicMap />
-        </section>
+        <div className="App">
+          <ImagesForMap2 />
+        </div>
       </main>
 
       <footer>
