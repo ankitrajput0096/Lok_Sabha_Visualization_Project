@@ -16,57 +16,58 @@ const BubbleChart = () => {
   summarized: "<strong>Phases Overview:</strong> The 2024 Indian general election was a monumental democratic exercise conducted in seven phases from April 19 to June 1, marking the largest election in history. Over 900 million eligible voters across 543 constituencies exercised their right to elect representatives to the 18th Lok Sabha. This election showcased India's diverse electorate, with participation spanning urban centers, rural villages, tribal areas, and conflict-affected regions. The process began with Phase 1, focusing on 102 constituencies, and progressed through key battleground states such as Gujarat, Uttar Pradesh, West Bengal, and Karnataka. Each phase revealed unique electoral dynamics, reflecting regional aspirations and challenges. High-stakes contests in Haryana and Delhi during later phases highlighted the strategic importance of urban and capital constituencies. The final phase encompassed Punjab, Himachal Pradesh, and Bihar, symbolizing the culmination of intense campaigning and voter engagement. With voter turnout reaching record levels, this election reaffirmed India's democratic ethos. The results, declared on June 4, shaped the path for the next five years of governance, reflecting the people's mandate and aspirations."
 };
 
-  const data = [
-    {
-      phase: "Phase 1",
-      totalVotes: 12000000,
-      voterTurnout: 65,
-      totalVotesPolled: 7800000,
-      constituencies: 91,
-    },
-    {
-      phase: "Phase 2",
-      totalVotes: 15000000,
-      voterTurnout: 8,
-      totalVotesPolled: 10500000,
-      constituencies: 97,
-    },
-    {
-      phase: "Phase 3",
-      totalVotes: 11000000,
-      voterTurnout: 60,
-      totalVotesPolled: 6600000,
-      constituencies: 71,
-    },
-    {
-      phase: "Phase 4",
-      totalVotes: 14000000,
-      voterTurnout: 75,
-      totalVotesPolled: 10500000,
-      constituencies: 72,
-    },
-    {
-      phase: "Phase 5",
-      totalVotes: 13000000,
-      voterTurnout: 98,
-      totalVotesPolled: 8840000,
-      constituencies: 62,
-    },
-    {
-      phase: "Phase 6",
-      totalVotes: 12500000,
-      voterTurnout: 72,
-      totalVotesPolled: 9000000,
-      constituencies: 67,
-    },
-    {
-      phase: "Phase 7",
-      totalVotes: 13500000,
-      voterTurnout: 74,
-      totalVotesPolled: 9990000,
-      constituencies: 59,
-    }
-  ];
+const data = [
+  {
+    phase: "Phase 1",
+    totalVotes: 154000000, 
+    voterTurnout: 66.14, 
+    totalVotesPolled: 101860000, 
+    constituencies: 102, 
+  },
+  {
+    phase: "Phase 2",
+    totalVotes: 132000000,
+    voterTurnout: 66.71,
+    totalVotesPolled: 88057200,
+    constituencies: 88,
+  },
+  {
+    phase: "Phase 3",
+    totalVotes: 172400000,
+    voterTurnout: 65.68,
+    totalVotesPolled: 113235200,
+    constituencies: 94,
+  },
+  {
+    phase: "Phase 4",
+    totalVotes: 145000000,
+    voterTurnout: 69.16,
+    totalVotesPolled: 100282000,
+    constituencies: 96,
+  },
+  {
+    phase: "Phase 5",
+    totalVotes: 80000000,
+    voterTurnout: 62.2,
+    totalVotesPolled: 49760000,
+    constituencies: 49,
+  },
+  {
+    phase: "Phase 6",
+    totalVotes: 125000000,
+    voterTurnout: 63.37,
+    totalVotesPolled: 79212500,
+    constituencies: 58,
+  },
+  {
+    phase: "Phase 7",
+    totalVotes: 123000000,
+    voterTurnout: 63.88,
+    totalVotesPolled: 78572400,
+    constituencies: 57,
+  }
+];
+
 
   useEffect(() => {
     const width = 900,
@@ -91,7 +92,7 @@ const BubbleChart = () => {
       const minimumTurnout = d3.min(data, (d) => d.voterTurnout);
       const maximumTurnout = d3.max(data, (d) => d.voterTurnout);
       
-      const scaledMinimumTurnout = Math.max(0, Math.floor(minimumTurnout / 10) * 10 - 10);
+      const scaledMinimumTurnout = Math.max(0, Math.floor(minimumTurnout / 10) * 10);
       const scaledMaximumTurnout = Math.min(100, Math.ceil(maximumTurnout / 10) * 10);
       
       const yScale = d3
@@ -99,7 +100,7 @@ const BubbleChart = () => {
         .domain([scaledMinimumTurnout, scaledMaximumTurnout])
         .range([height - margin.bottom, margin.top]);
       
-      const yAxis = d3.axisLeft(yScale).ticks((scaledMaximumTurnout - scaledMinimumTurnout) / 10);
+      const yAxis = d3.axisLeft(yScale).ticks((scaledMaximumTurnout - scaledMinimumTurnout));
       
       svg
         .append("g")
