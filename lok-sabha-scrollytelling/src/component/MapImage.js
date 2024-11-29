@@ -8,12 +8,13 @@ const styles = {
     padding: '10vh 2vw 10vh',
     display: 'flex',
     justifyContent: 'space-between',
+    color: 'black'
   },
   graphic: {
-    flexBasis: '60%',
+    //flexBasis: '60%',
     position: 'sticky',
     width: '100%',
-    height: '40vh',
+    height: '60vh',
     top: '20vh',
     backgroundColor: '#aaa',
     display: 'flex',
@@ -28,12 +29,13 @@ const styles = {
   },
   // css for left box
   scroller: {
-    flexBasis: '35%',
+    flexBasis: '0.1%',
   },
   step: {
     margin: '0 auto 3rem auto',
     padding: '180px 0',
-    border: '5px solid',
+    visibility: 'hidden',
+    //border: '1px solid #333',
     '& p': {
       textAlign: 'center',
       padding: '1rem',
@@ -78,31 +80,19 @@ class Demo extends PureComponent {
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
-              progress
+              //progress
               onStepProgress={this.onStepProgress}
-              offset="400px"
+              offset="0.3"
             >
               {steps.map(value => {
                 const isVisible = value === data;
-                const backgroundColor = isVisible
+                const background = isVisible
                   ? `rgba(44,127,184, ${progress})`
                   : 'white';
-
-                // const background = isVisible
-                // ? `white`
-                // : 'white';
-
                 const visibility = isVisible ? 'visible' : 'hidden';
                 return (
                   <Step data={value} key={value}>
-
-                    {/* css for the left box can be changes here */}
-                    <div className={classes.step} style={
-                        
-                        { color: backgroundColor, }
-                        
-                        
-                        }>
+                    <div className={classes.step} style={{ background }}>
                       {/* <p>step value: {value}</p> */}
                       {/* <p style={{ visibility }}>
                         {Math.round(progress * 1000) / 10 + '%'}

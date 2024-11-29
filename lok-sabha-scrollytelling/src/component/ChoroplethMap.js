@@ -74,6 +74,12 @@ class Demo extends PureComponent {
     return (
       <div>
         <div className={classes.graphicContainer}>
+
+
+          <div className={classes.graphic}>
+            <p>I love cars {data}</p>
+          </div>
+
           <div className={classes.scroller}>
             <Scrollama
               onStepEnter={this.onStepEnter}
@@ -113,9 +119,11 @@ class Demo extends PureComponent {
               })}
             </Scrollama>
           </div>
-          <div className={classes.graphic}>
-            <p>I love cars {data}</p>
-          </div>
+
+
+
+
+
         </div>
       </div>
     );
