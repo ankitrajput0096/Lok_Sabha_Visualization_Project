@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { Typography, Paper } from "@mui/material";
+// import styles from '../Timeline.module.css';
+
 
 const Timeline = () => {
   const ref = useRef();
@@ -21,7 +23,7 @@ const Timeline = () => {
       { id: 10, event: "Manipur Clashes", date: "2024-06-20", impact: "Party F gained momentum", image: "/images/manipur-clashes.png", summary: "The Manipur ethnic clashes, which erupted in May 2023, stemmed from longstanding tensions between the Meitei and Kuki communities over land rights, tribal status, and political representation. The violence, triggered by protests against granting Scheduled Tribe status to the Meiteis, led to widespread displacement, loss of lives, and destruction of property, severely impacting the state's socio-political fabric. Politically, the unrest exposed governance challenges and fueled criticism of the BJP-led state and central governments for delayed intervention and perceived bias. The clashes deepened ethnic divisions, influenced political alignments, and became a contentious issue in national debates over minority rights, federal governance, and security in India’s northeastern region." }
   ];
   
-  const width =1287
+  const width =960
   const height=520
   console.log(width, height)
   const cardColors = ["orange", "lightblue"];
@@ -403,7 +405,9 @@ function wrapText(text, str, width) {
       <Typography>
         Explore the sequence of significant events that influenced the election outcome.
       </Typography> */}
-      <svg id = "timeline"></svg>
+      
+      <svg  id = "timeline"></svg>
+      
     </Paper>
   );
 };
