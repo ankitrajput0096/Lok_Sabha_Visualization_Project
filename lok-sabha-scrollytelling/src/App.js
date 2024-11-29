@@ -72,10 +72,9 @@ function App() {
         <section className="section BubbleChart" style={{marginTop:"5%"}}>
           <BubbleChart />
         </section>
-        <section className="section BubbleChart scrolly" style={{ display:"flex" }}>
-  <BubbleChartScrolly />
-</section>
-
+        <div className="">
+          <BubbleChartScrolly />
+        </div>
         <section className="section timeline">
           <Timeline />
         </section>
