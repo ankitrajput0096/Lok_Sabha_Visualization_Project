@@ -80,7 +80,7 @@ class Demo extends PureComponent {
               onStepExit={this.onStepExit}
               progress
               onStepProgress={this.onStepProgress}
-              offset="400px"
+              offset="0.5"
             >
               {steps.map(value => {
                 const isVisible = value === data;
