@@ -193,13 +193,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
     },
   },
 };
-  // Combined winners across all states
-  const allWinners = Object.keys(phases).reduce((acc, phase) => {
-    const phaseWinners = phases[phase].winners || {};
-    return { ...acc, ...phaseWinners };
-  }, {});
 
-  // Colors for parties
   const partyColors = {
     BJP: "#FF5722",
     INC: "#2196F3",
@@ -226,27 +220,13 @@ const ChoroplethMap = ({ selectedPhase }) => {
     const width = 800;
     const height = 600;
 
-    svg.selectAll("*").remove();
-
     const projection = d3
       .geoMercator()
-      .scale(1000)
-      .center([78.9629, 22.5937])
+      .scale(700)
+      .center([78.9629, 15.5937])
       .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
-
-    let highlightedStates = [];
-    let winners = {};
-
-    if (selectedPhase === "All Winners") {
-      winners = allWinners; // Highlight all states with their winning parties
-      highlightedStates = Object.keys(allWinners).map(normalizeStateName);
-    } else if (phases[selectedPhase]) {
-      const phaseData = phases[selectedPhase];
-      highlightedStates = (phaseData.states || []).map(normalizeStateName);
-      winners = phaseData.winners || {};
-    }
 
     d3.json(indiaGeoJSON).then((geoData) => {
       svg
@@ -254,35 +234,55 @@ const ChoroplethMap = ({ selectedPhase }) => {
         .data(geoData.features)
         .join("path")
         .attr("d", path)
-        .attr("fill", (d) => {
-          const stateName = normalizeStateName(d.properties.ST_NM);
-          if (highlightedStates.includes(stateName)) {
-            const party = winners[d.properties.ST_NM];
-            return partyColors[party] || "#FFEB3B"; // Party color or fallback
-          }
-          return "#E0E0E0"; // Default gray for unhighlighted states
-        })
+        .attr("fill", "#E0E0E0") // Default gray
         .attr("stroke", "#000")
         .attr("stroke-width", 0.5)
-        .append("title")
+        .attr("data-state", (d) => normalizeStateName(d.properties.ST_NM))
+        .append("title");
+    });
+  }, []);
+
+  useEffect(() => {
+    const svg = d3.select(svgRef.current);
+
+    const phaseData = phases[selectedPhase];
+    const highlightedStates = (phaseData?.states || []).map(normalizeStateName);
+    const winners = phaseData?.winners || {};
+
+    // Update colors dynamically
+    svg.selectAll("path").each(function () {
+      const stateElement = d3.select(this);
+      const stateName = stateElement.attr("data-state");
+      const matchingState = Object.keys(winners).find(
+        (key) => normalizeStateName(key) === stateName
+      );
+      const party = matchingState ? winners[matchingState] : null;
+
+      stateElement
+        .attr("fill", party ? partyColors[party] : "#E0E0E0")
+        .select("title")
         .text(
-          (d) =>
-            `${d.properties?.ST_NM || "Unknown"}: ${
-              winners[d.properties.ST_NM] || "No data"
-            }`
+          `${matchingState || "Unknown"}: ${party || "No data"}`
         );
     });
   }, [selectedPhase]);
 
+  console.log("the selected Phase is: ", selectedPhase);
+
+  let thePhase = undefined;
+  if(selectedPhase !== undefined) {
+    thePhase = ": "+selectedPhase;
+  }
+
   return (
-    <Paper elevation={3} sx={{ padding: 2}}>
-      <Typography variant="h3" gutterBottom>
-        Lok Sabha Elections 2024: {selectedPhase}
+    <Paper elevation={3} sx={{ padding: 2 }}>
+      <Typography variant="h6" gutterBottom style={{ marginLeft: "100px", marginTop: "60px" }}>
+        Lok Sabha Elections 2024{thePhase}
       </Typography>
-      <svg ref={svgRef} width="800" height="600"></svg>
-      <Box sx={{ marginTop: 4 }}>
-        <Typography variant="h4">Party Color Legend:</Typography>
-        <Grid container spacing={2}>
+      <svg ref={svgRef} width="800" height="500"></svg>
+      <Box sx={{ marginTop: 0, marginLeft: "50px" }}>
+        <Typography variant="h7">Party Color Legend:</Typography>
+        <Grid container spacing={1}>
           {Object.entries(partyColors).map(([party, color]) => (
             <Grid item xs={6} md={3} key={party}>
               <Box
@@ -294,13 +294,13 @@ const ChoroplethMap = ({ selectedPhase }) => {
               >
                 <Box
                   sx={{
-                    width: 25,
-                    height: 25,
+                    width: 15,
+                    height: 15,
                     backgroundColor: color,
                     border: "1px solid #000",
                   }}
                 ></Box>
-                <p style={{ color: 'black', fontSize: '15px' }}>{party}</p>
+                <p style={{ color: "black", fontSize: "10px" }}>{party}</p>
               </Box>
             </Grid>
           ))}

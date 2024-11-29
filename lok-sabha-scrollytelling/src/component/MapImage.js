@@ -66,7 +66,7 @@ const styles = {
     '& p': {
       textAlign: 'center',
       padding: '1rem',
-      fontSize: '1.8rem',
+      fontSize: '1.3rem',
       margin: 0,
     },
     '&:last-child': {
