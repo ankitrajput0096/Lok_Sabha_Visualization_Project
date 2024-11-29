@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
-import HeatMap from "./component/HeatMap";
+import BubbleChart from "./component/BubbleChart";
 import PieChart from "./component/PieChart";
 import ThematicMap from "./component/ThematicMap";
 import Timeline from "./component/Timeline";
+import BubbleChartScrolly from "./component/BubbleChartScrolly"
 import useScrollAnimations from "./hooks/useScrollAnimations";
 import BarChart from "./component/BarChart";
 import ScrollJackingComponent from "./component/ScrollSwitchView";
@@ -22,11 +23,11 @@ function App() {
           <button
             onClick={() =>
               document
-                .querySelector(".heatmap")
+                .querySelector(".BubbleChart")
                 .scrollIntoView({ behavior: "smooth" })
             }
           >
-            Heatmap
+            BubbleChart
           </button>
           <button
             onClick={() =>
@@ -68,9 +69,13 @@ function App() {
       </header>
 
       <main>
-        <section className="section heatmap">
-          <HeatMap />
+        <section className="section BubbleChart" style={{marginTop:"5%"}}>
+          <BubbleChart />
         </section>
+        <section className="section BubbleChart scrolly" style={{ display:"flex" }}>
+  <BubbleChartScrolly />
+</section>
+
         <section className="section timeline">
           <Timeline />
         </section>
