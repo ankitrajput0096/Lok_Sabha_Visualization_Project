@@ -25,47 +25,18 @@ svg {
     /* pointer-events: none; */
 }
 
-.line {
-    stroke: #000;
-    stroke-width: 2;
-}
 
-.circle {
-    fill: black;
-}
 
 .card {
     fill: #f0f0f0;
-    /* stroke: black; */
     stroke-width: 1;
     cursor: pointer;
     rx: 10px;  /* Add this line for rounded corners */
     ry: 10px;  /* Add this line for rounded corners */
 }
-
-.text {
+/* 
+/* .text {
     font-size: 12px;
     fill: #000;  /* Change this to black */
-    pointer-events: none;
-}
-
-.card-group {
-    cursor: pointer;
-}
-
-.image-container {
-    rx: 3px;
-    ry: 3px;
-}
-
-.card-image {
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-  }
-  
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    /* pointer-events: none; */
+/* } */ 

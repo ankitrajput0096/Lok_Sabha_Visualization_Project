@@ -36,25 +36,25 @@ const Timeline = () => {
 defs.append("pattern")
     .attr("id", "bg-image")
     .attr("patternUnits", "userSpaceOnUse")
-    .attr("width", width * 2)
+    .attr("width", width * 4 )
     .attr("height", height)
     .append("image")
     .attr("href", "/images/image.png")
-    .attr("width", width * 3 +50)  // Increase the width
-    .attr("height", height-150)
-    .attr("x", -width) // Shift the image to the left
-    .attr("y", -height / 4 +210);
+    // .attr("width", width * 3 +350)  // Increase the width
+    // .attr("height", height-100)
+    .attr("x", -width + 1150) // Shift the image to the left
+    .attr("y", -height / 4 +120);
 
     svg.insert("rect", ":first-child")
-    .attr("width", width * 2)
-    .attr("height", height)
+    .attr("width", width * 4)
+    .attr("height", height + 100)
     .attr("fill", "url(#bg-image)")
     .attr("x", -width);  // Shift the rectangle to the left
 
 const timelineY = height / 2;
 
 const timelineLine = svg.append("line")
-    .attr("class", "line")
+    
     .attr("y1", timelineY)
     .attr("y2", timelineY)
     .attr("stroke", "black")
@@ -64,8 +64,8 @@ const timelineLine = svg.append("line")
 const circleRadius = 8;
 const cardWidth = 170;
 const cardHeight = 140;
-const gap = width / 6;
-const initialOffset = cardWidth / 2 + 80;
+const gap = width / 4;
+const initialOffset = cardWidth / 2 + 280;
 
 const timelineGroup = svg.append("g")
     .attr("transform", `translate(${initialOffset}, 0)`);
@@ -79,7 +79,7 @@ const detailBox = svg.append("g")
     .attr("pointer-events", "none");
 
 const margin = 20;
-const detailBoxWidth = width - 27 * margin;
+const detailBoxWidth = width + 10 * margin;
 console.log(margin)
 
 
@@ -152,7 +152,7 @@ detailContent.append("text")
 
 const closeButton = detailBox.append("g")
     .attr("class", "close-button")
-    .attr("transform", `translate(${width - margin - 140}, ${margin + 20})`)
+    .attr("transform", `translate(${width + 140}, ${margin + 20})`)
     .style("cursor", "pointer");
 
 closeButton.append("circle")
@@ -178,7 +178,7 @@ closeButton.on("click", () => {
     const isAbove = i % 2 === 0;
 
     const circle = timelineGroup.append("circle")
-        .attr("class", "circle")
+        .attr("fill", "black")
         .attr("cx", x)
         .attr("cy", timelineY)
         .attr("r", circleRadius);
@@ -221,7 +221,8 @@ closeButton.on("click", () => {
 
     const cardY = isAbove ? timelineY - 45 : timelineY + 45;
     timelineGroup.append("line")
-        .attr("class", "line")
+    .attr("stroke", "#000")        // Line color (black)
+    .attr("stroke-width", 2)
         .attr("x1", x)
         .attr("x2", x)
         .attr("y1", timelineY)
@@ -229,6 +230,10 @@ closeButton.on("click", () => {
 
         const card = timelineGroup.append("g")
         .attr("class", "card")
+  //       .attr("fill", "#f0f0f0")     // Fill color
+  // .attr("stroke-width", 1)     // Stroke width
+  // .attr("cursor", "pointer")   // Cursor on hover
+  
         .attr("transform", `translate(${x - cardWidth / 2}, ${isAbove ? cardY - cardHeight : cardY})`);
     
         const cardColor = i % 2 === 0 ? "rgba(255, 165, 0, 0.7)" : "rgba(173, 216, 230, 0.8)";
@@ -274,7 +279,8 @@ closeButton.on("click", () => {
     .attr("ry", 10);
 
         card.append("text")
-        .attr("class", "text")
+          // Set font size
+        .attr("pointer-events", "none")
         .attr("x", cardWidth / 2)
         .attr("y", 99)
         .attr("text-anchor", "middle")
@@ -295,7 +301,7 @@ closeButton.on("click", () => {
         detailContent.select(".detail-summary").text(d.summary);
         const summaryText = detailContent.select(".detail-summary");
     summaryText.text("");
-    wrapText(summaryText, d.summary, width - 2 * margin - 960);
+    wrapText(summaryText, d.summary, width - 2 * margin - 260);
 
         detailContent.select(".image-box")
         .attr("width", 400)
@@ -335,7 +341,7 @@ let direction = -1; // -1 for left, 1 for right
 
 function scrollTimeline() {
   if (!animationPaused) {
-      offset += (gap/130) * direction;
+      offset += (gap/70) * direction;
       
       // Check if we've reached the end in either direction
       if (Math.abs(offset) > gap * (data.length - 5) + initialOffset || offset > 0) {
