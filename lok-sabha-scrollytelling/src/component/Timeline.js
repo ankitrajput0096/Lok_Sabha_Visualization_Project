@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef,  } from "react";
 import * as d3 from "d3";
 import { Typography, Paper } from "@mui/material";
 // import styles from '../Timeline.module.css';
@@ -6,9 +6,23 @@ import { Typography, Paper } from "@mui/material";
 
 const Timeline = () => {
   const ref = useRef();
+  const a = useRef(false);
+
+
+  // useEffect(()=>{
+  //   if(a.current){
+  //     return
+  //   }
+  //   a.current=true
+  //   console.log('ABC ====');
+    
+  // },[])
 
   useEffect(() => {
-    
+    if(a.current){
+      return
+    }
+    a.current=true
 
     const data = [
       { id: 1, event: "Article 370", date: "2024-01-15", impact: "Party A gained support", image: "../images/article-370.jpeg", summary: "The abrogation of Article 370 on August 5, 2019, revoked Jammu & Kashmir's special status, integrating it fully into India and reorganizing it into two Union Territories: Jammu & Kashmir and Ladakh. This move, led by the BJP government, was framed as a step toward national integration, security, and development. It significantly influenced Indian elections by bolstering the BJP’s nationalist image and solidifying its voter base, especially in regions favoring a strong central government. While it polarized opinions, with supporters hailing it as a historic and patriotic decision and critics questioning its democratic and constitutional implications, the abrogation became a defining campaign issue for the BJP, showcasing decisive governance and fulfilling a core ideological promise." },
@@ -25,7 +39,7 @@ const Timeline = () => {
   
   const width =960
   const height=520
-  console.log(width, height)
+  console.log(width, height,'=======')
   const cardColors = ["orange", "lightblue"];
 
   const svg = d3.select("#timeline")
@@ -216,7 +230,7 @@ closeButton.on("click", () => {
         animationPaused = false;
         d3.select(this).attr("r", circleRadius);
         dateBox.transition().duration(200).style("opacity", 0);
-        requestAnimationFrame(scrollTimeline);
+        // requestAnimationFrame(scrollTimeline);
     });
 
     const cardY = isAbove ? timelineY - 45 : timelineY + 45;
@@ -338,6 +352,7 @@ closeButton.on("click", () => {
 
 
 let direction = -1; // -1 for left, 1 for right
+let animationFrameId = null;
 
 function scrollTimeline() {
   if (!animationPaused) {
@@ -350,12 +365,12 @@ function scrollTimeline() {
       
       timelineGroup.attr("transform", `translate(${initialOffset + offset}, 0)`);
       updateTimelineLine();
-      requestAnimationFrame(scrollTimeline);
+      animationFrameId = requestAnimationFrame(scrollTimeline);
   }
 }
 
 
-requestAnimationFrame(scrollTimeline);
+// requestAnimationFrame(scrollTimeline);
 
 function updateTimelineLine() {
     const firstCard = timelineGroup.select(".card").node();
@@ -403,7 +418,10 @@ function wrapText(text, str, width) {
 
   }, []);
 
-  return (
+// return (
+//   <p>sdfsd</p>
+// )  
+return (
     <Paper elevation={3} sx={{ padding: 2 }}>
       {/* <Typography variant="h5" gutterBottom>
         Timeline of Key Events - Lok Sabha 2024
