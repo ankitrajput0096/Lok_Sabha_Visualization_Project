@@ -99,11 +99,12 @@ console.log(margin)
 
 
 detailBox.append("rect")
-    .attr("x", margin + 240)
+    .attr("x", margin + 350)
     .attr("y", margin + 50)
     .attr("width", detailBoxWidth)
     .attr("height", height / 2 + 70)
     .attr("fill", "#fff")
+    .attr("fill", "rgba(255, 255, 255, 1)") // Semi-transparent white background
     .attr("stroke", "black")
     .attr("stroke-width", 2)
     .attr("rx", 30)  // Add this line for rounded corners
@@ -111,10 +112,10 @@ detailBox.append("rect")
 
 // Add the new rectangle block for the title
 detailBox.append("rect")
-    .attr("x", margin + 240)
+    .attr("x", margin + 350)
     .attr("y", margin + 50)
     .attr("width", detailBoxWidth)
-    .attr("height", 40)
+    .attr("height", 50)
     .attr("fill", "lightgreen")
     .attr("stroke", "black")
     .attr("stroke-width", 2)
@@ -122,7 +123,7 @@ detailBox.append("rect")
     .attr("ry", 20);
 
 const detailContent = detailBox.append("g")
-    .attr("transform", `translate(${margin + 170}, ${margin + 70})`);
+    .attr("transform", `translate(${margin + 280}, ${margin + 70})`);
 
     detailContent.append("rect")
     .attr("class", "image-box")
@@ -138,8 +139,8 @@ const detailContent = detailBox.append("g")
 
     detailContent.append("text")
     .attr("class", "detail-title")
-    .attr("x", detailBoxWidth / 2 - 20)
-    .attr("y", 8)
+    .attr("x", detailBoxWidth / 2 + 80)
+    .attr("y", 12)
     .attr("text-anchor", "middle")
     .style("font-size", "24px")
     .style("font-weight", "bold");
@@ -159,18 +160,18 @@ detailContent.append("image")
 detailContent.append("text")
     .attr("class", "detail-summary")
     .attr("x", 540)
-    .attr("y", 90)
+    .attr("y", 70)
     .attr("width", width - 2 * margin - 240)
     .style("font-size", "18px")
     .style("font-weight", "bold");
 
 const closeButton = detailBox.append("g")
     .attr("class", "close-button")
-    .attr("transform", `translate(${width + 140}, ${margin + 20})`)
+    .attr("transform", `translate(${width + 540}, ${margin + 74})`)
     .style("cursor", "pointer");
 
 closeButton.append("circle")
-    .attr("r", 15)
+    .attr("r", 17)
     .attr("fill", "#f0f0f0");
 
 closeButton.append("text")
@@ -365,12 +366,12 @@ function scrollTimeline() {
       
       timelineGroup.attr("transform", `translate(${initialOffset + offset}, 0)`);
       updateTimelineLine();
-      animationFrameId = requestAnimationFrame(scrollTimeline);
+      requestAnimationFrame(scrollTimeline);
   }
 }
 
 
-// requestAnimationFrame(scrollTimeline);
+requestAnimationFrame(scrollTimeline);
 
 function updateTimelineLine() {
     const firstCard = timelineGroup.select(".card").node();
@@ -378,8 +379,8 @@ function updateTimelineLine() {
     if (firstCard && lastCard) {
         const firstCardX = firstCard.getBoundingClientRect().left - svg.node().getBoundingClientRect().left;
         const lastCardX = lastCard.getBoundingClientRect().right - svg.node().getBoundingClientRect().left;
-        timelineLine.attr("x1", firstCardX + 80)
-                    .attr("x2", lastCardX - 80);
+        timelineLine.attr("x1", firstCardX + 140)
+                    .attr("x2", lastCardX - 140);
     }
 }
 
