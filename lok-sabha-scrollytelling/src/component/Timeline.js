@@ -81,7 +81,7 @@ const circleRadius = 8;
 const cardWidth = 170;
 const cardHeight = 140;
 const gap = width / 4;
-const initialOffset = cardWidth / 2 + 180;
+const initialOffset = cardWidth / 2 + 280;
 
 const timelineGroup = svg.append("g")
     .attr("transform", `translate(${initialOffset + 80}, 0)`);
@@ -360,11 +360,11 @@ let animationFrameId = null;
 
 function scrollTimeline() {
   if (!animationPaused) {
-      offset += (gap/130) * direction;
+      offset += (gap/120) * direction;
       if (Math.abs(offset) > gap * (data.length - 5) + initialOffset || offset > 0) {
           direction *= -1; // Reverse direction
       }
-      timelineGroup.attr("transform", `translate(${initialOffset + offset + 140}, 0)`);
+      timelineGroup.attr("transform", `translate(${initialOffset + offset + 20}, 0)`);
       updateTimelineLine(); // Add this line to update the timeline
       requestAnimationFrame(scrollTimeline);
   }
@@ -379,8 +379,8 @@ function updateTimelineLine() {
     if (firstCard && lastCard) {
         const firstCardX = firstCard.getBoundingClientRect().left - svg.node().getBoundingClientRect().left;
         const lastCardX = lastCard.getBoundingClientRect().right - svg.node().getBoundingClientRect().left;
-        timelineLine.attr("x1", firstCardX + 160)
-                    .attr("x2", lastCardX + 240);
+        timelineLine.attr("x1", firstCardX + 165)
+                    .attr("x2", lastCardX + 540);
     }
 }
 
@@ -423,7 +423,7 @@ function wrapText(text, str, width) {
 //   <p>sdfsd</p>
 // )  
 return (
-    <Paper elevation={3} sx={{ padding: 2, backgroundColor: '#f5f5f5' }}>
+    <Paper elevation={3} sx={{ padding: 8, backgroundColor: '#f5f5f5' }}>
       {/* <Typography variant="h5" gutterBottom>
         Timeline of Key Events - Lok Sabha 2024
       </Typography>
