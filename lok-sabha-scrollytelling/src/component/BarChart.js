@@ -196,9 +196,9 @@ const ScrollyContainer = ({ data, events }) => {
             style={{
               marginBottom: "20px",
               padding: "20px",
-              backgroundColor: "#f9f9f9",
+              // backgroundColor: "#f9f9f9",
               borderRadius: "8px",
-              boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+              // boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
             }}
           >
             <h3>{event.month}</h3>
