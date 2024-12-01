@@ -33,7 +33,7 @@ const Timeline = () => {
       { id: 6, event: "Bharat Jodo", date: "2024-05-12", impact: "Shift in voter sentiment", image: "/images/india-alliance.png", summary: "The Bharat Jodo Yatra, launched by the Indian National Congress, was a nationwide foot march led by Rahul Gandhi, spanning over 4,000 kilometers from Kanyakumari to Kashmir. The campaign aimed to counter rising communal polarization, economic inequalities, and alleged authoritarianism under the BJP government, promoting messages of unity, secularism, and inclusivity. The yatra garnered widespread attention for its grassroots engagement, drawing participation from diverse sections of society, including farmers, laborers, and youth. Politically, it rejuvenated the Congress's image, uniting members of other party and thereby energizing its cadre and consolidating its support base ahead of key state elections." },
       { id: 7, event: "Ayodhya Ram Mandir", date: "2024-09-01", impact: "Damaged reputation of Party I", image: "/images/ayodhya.png", summary: "The Ayodhya Ram Mandir, a temple dedicated to Lord Ram at the disputed site in Ayodhya, Uttar Pradesh, is a culmination of decades of political, legal, and religious conflict in India. The Supreme Court ruled in favor of constructing the temple at the site where the Babri Masjid stood before its demolition in 1992, a landmark verdict that resolved one of India’s most contentious disputes. The construction of the temple, spearheaded by the BJP and Hindu organizations, became a symbol of cultural and religious revival for many Hindus. Politically, the Ram Mandir issue has been pivotal in the BJP's rise, resonating with its core Hindutva ideology and significantly shaping election narratives and gaining people's favor." },
       { id: 8, event: "Adani Heidenberg", date: "2024-08-10", impact: "Boost for Party H", image: "/images/adani.jpg", summary: "The Adani-Hindenburg crisis refers to the financial turmoil triggered by the report from Hindenburg Research, a US-based firm, accusing the Adani Group of stock manipulation and over-leveraging. The report led to a dramatic fall in the market value of Adani Group companies, wiping out billions of dollars from the conglomerate’s market capitalization. The allegations raised concerns about corporate governance and transparency in one of India’s largest business empires, which has close ties to the ruling BJP government. The Adani Group denied the allegations, describing the report as a smear campaign. The incident had widespread repercussions, affecting investor sentiment and raising broader questions about regulatory oversight in India, thus people doubting their trust in BJP." },
-      { id: 9, event: "Intense Campaigning", date: "2024-10-15", impact: "Swing in undecided voters", image: "/images/intense-campaign.jpeg", summary: "Intense campaigning refers to a high-energy, focused effort by political parties or candidates to engage with voters and gain support during an election period. It involves a range of strategies, including rallies, speeches, door-to-door canvassing, social media outreach, advertisements, and debates. The goal is to mobilize voters, address key issues, and promote the candidate’s or party’s policies. Intense campaigning often escalates in the final stages of an election, with parties attempting to sway undecided voters and increase turnout, especially in competitive constituencies. BJP implemented various strategies during these campaigning just to regain the voter's trust and confidence." },
+      { id: 9, event: "Intense Campaign", date: "2024-10-15", impact: "Swing in undecided voters", image: "/images/intense-campaign.jpeg", summary: "Intense campaigning refers to a high-energy, focused effort by political parties or candidates to engage with voters and gain support during an election period. It involves a range of strategies, including rallies, speeches, door-to-door canvassing, social media outreach, advertisements, and debates. The goal is to mobilize voters, address key issues, and promote the candidate’s or party’s policies. Intense campaigning often escalates in the final stages of an election, with parties attempting to sway undecided voters and increase turnout, especially in competitive constituencies. BJP implemented various strategies during these campaigning just to regain the voter's trust and confidence." },
       { id: 10, event: "Manipur Clashes", date: "2024-06-20", impact: "Party F gained momentum", image: "/images/manipur-clashes.png", summary: "The Manipur ethnic clashes, stemmed from longstanding tensions between the Meitei and Kuki communities over land rights, tribal status, and political representation. The violence, triggered by protests against granting Scheduled Tribe status to the Meiteis, led to widespread displacement, loss of lives, and destruction of property, severely impacting the state's socio-political fabric. Politically, the unrest exposed governance challenges and fueled criticism of the BJP-led state and central governments for delayed intervention and perceived bias. The clashes deepened ethnic divisions, influenced political alignments, and became a contentious issue thus tarnishing BJP's image in North-Eastern states of India." }
   ];
   
@@ -105,8 +105,8 @@ detailBox.append("rect")
     .attr("y", margin + 50)
     .attr("width", detailBoxWidth)
     .attr("height", height / 2 + 70)
-    .attr("fill", "#fff")
-    .attr("fill", "rgba(255, 255, 255, 1)") // Semi-transparent white background
+    .attr("fill", "#f5f5f5")
+    // .attr("fill", "rgba(255, 255, 255, 1)") // Semi-transparent white background
     .attr("stroke", "black")
     .attr("stroke-width", 2)
     .attr("rx", 30)  // Add this line for rounded corners
@@ -161,8 +161,8 @@ detailContent.append("image")
 
 detailContent.append("text")
     .attr("class", "detail-summary")
-    .attr("x", 540)
-    .attr("y", 70)
+    .attr("x", 537)
+    .attr("y", 78)
     .attr("width", width - 2 * margin - 240)
     .style("font-size", "18px")
     .style("font-weight", "bold");
@@ -337,7 +337,7 @@ closeButton.on("click", () => {
             .style("fill", d3.color(cardColor).darker(0.1))
             .style("stroke", "yellow")
             .style("stroke-width", 3)
-            .style("opacity", 0.9);
+            .style("opacity", 1);
     })
     .on("mouseout", function() {
         if (detailBox.style("opacity") !== "1") {
@@ -348,7 +348,7 @@ closeButton.on("click", () => {
             .style("fill", cardColor)
             .style("stroke", "black")
             .style("stroke-width", 2)
-            .style("opacity", 0.9);
+            .style("opacity", 1);
     });
     updateTimelineLine();
 });
