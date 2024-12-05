@@ -6,7 +6,7 @@ import ThematicMap from "./component/ThematicMap";
 import Timeline from "./component/Timeline";
 import BubbleChartScrolly from "./component/BubbleChartScrolly"
 import useScrollAnimations from "./hooks/useScrollAnimations";
-import BarChart from "./component/BarChart";
+import BarChart from "./component/BarChart"
 import ScrollJackingComponent from "./component/ScrollSwitchView";
 import ImagesForMap from "./component/MapImage";
 import ImagesForMap2 from "./component/MapImage2";
@@ -78,9 +78,12 @@ function App() {
         <section className="section timeline">
           <Timeline />
         </section>
-        <section className="section barchart">
+        {/* <section className="section barchart">
           <BarChart />
-        </section>
+        </section> */}
+        <div className="">
+          <BarChart />
+        </div>
         <section className="section piechart">
           <PieChart />
         </section>
