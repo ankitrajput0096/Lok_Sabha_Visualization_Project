@@ -301,8 +301,8 @@ svg
         ref={descriptionRef}
         style={{
           width: '400px', 
-          padding: '20px', 
-          paddingTop: '7%',
+          // padding: '20px', 
+          // paddingTop: '7%',
           paddingLeft: '5%',
           fontSize: '14px', 
           lineHeight: '1.5', 

@@ -105,7 +105,7 @@ detailBox.append("rect")
     .attr("y", margin + 50)
     .attr("width", detailBoxWidth)
     .attr("height", height / 2 + 70)
-    .attr("fill", "#f5f5f5")
+    // .attr("fill", "#f5f5f5")
     // .attr("fill", "rgba(255, 255, 255, 1)") // Semi-transparent white background
     .attr("stroke", "black")
     .attr("stroke-width", 2)
@@ -423,7 +423,7 @@ function wrapText(text, str, width) {
 //   <p>sdfsd</p>
 // )  
 return (
-    <Paper elevation={3} sx={{ padding: 8, backgroundColor: '#f5f5f5' }}>
+    <Paper elevation={3} sx={{ padding: 8 }}>
       {/* <Typography variant="h5" gutterBottom>
         Timeline of Key Events - Lok Sabha 2024
       </Typography>

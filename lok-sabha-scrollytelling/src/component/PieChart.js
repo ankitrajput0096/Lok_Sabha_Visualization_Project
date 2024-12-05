@@ -239,7 +239,7 @@ const PieChart = () => {
   }, [stateData, stateWiseData]);
 
   return (
-    <Paper elevation={3} sx={{ padding: 2, backgroundColor: '#f0f4f8' }}>
+    <Paper elevation={3} sx={{ padding: 2 }}>
       <Typography variant='h5' gutterBottom>
         Voter Share Analysis - Lok Sabha 2024
       </Typography>

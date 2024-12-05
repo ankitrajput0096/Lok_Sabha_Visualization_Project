@@ -38,7 +38,7 @@ const styles = {
     zoom: '150%'
   },
   graphicContainer: {
-    padding: '7vh 4vw 7vh',
+    padding: '0vh 4vw 0vh',
     display: 'flex',
     justifyContent: 'space-between',
   },
