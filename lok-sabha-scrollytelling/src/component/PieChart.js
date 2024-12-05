@@ -2,80 +2,36 @@ import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Typography, Select, MenuItem, Paper, Box } from "@mui/material";
 
-const dataReader = async () => {
-  const fileName = './LS_2024.csv';
+const REGION_INFO = {
+  'North': `In the 2024 Lok Sabha elections, northern states exhibited a diverse range of political outcomes. 
+          Uttar Pradesh, with its 80 constituencies, remained a stronghold for the BJP, although the party faced increased competition from the Samajwadi Party (SP) and Indian National Congress (INC), particularly in urban and minority-majority areas. 
+          The BJP's performance was notably challenged in areas with significant caste-based voter groups, highlighting the changing political dynamics in the state. Voter concerns related to economic conditions, law and order, and unemployment played a significant role in shaping outcomes.
+          In Haryana, the BJP managed to retain control over a majority of seats, but it witnessed a surge in opposition sentiment, with the Indian National Congress and Jannayak Janata Party (JJP) making notable strides. The state's political environment, influenced by farmer protests and local governance issues, led to more unpredictable voting patterns. Punjab saw an exciting development with the Aam Aadmi Party (AAP) and Congress gaining ground. The AAP, despite its relatively newer presence, made significant inroads due to its promises of good governance and efforts to address local concerns, including those related to the agricultural sector and law and order issues.`,
+          
+  'West': `In the 2024 Lok Sabha elections, the Western states of India saw significant shifts, with key victories and notable losses across major parties.
+          In Maharashtra, the Bharatiya Janata Party (BJP) managed to retain important seats, despite challenges from regional players. The Shiv Sena (Uddhav faction) had a particularly tight race, with Ravindra Dattaram Waikar winning Mumbai North West by a razor-thin margin of just 48 votes, marking one of the closest contests of the election. The state also saw some notable losses, with Congress securing key constituencies.
+          In Gujarat, the BJP continued its dominance, maintaining most of its seats. However, the opposition made some inroads, particularly in regions traditionally held by the BJP. Similarly, Rajasthan witnessed fierce competition, with the Congress gaining a strong foothold in several constituencies, securing victories in key seats.
+          Overall, while the BJP retained a substantial presence in Western India, the opposition, particularly from the Congress and regional parties, managed to cut into their margin, indicating a more competitive electoral landscape in these states.`,
 
-  try {
-    const data = await d3.csv(fileName);
-    const cleanData = [];
-    data.forEach((d) => {
-      let state = d.STATE;
-      let party = d.PARTY;
-      let votes = +d.TOTALVOTES;
-      let winner = +d.WINNER;
-      cleanData.push({ state, party, votes, winner });
-    });
+  'South': `In the 2024 Lok Sabha elections, the Southern states saw mixed results, with regional parties maintaining dominance in some areas, while national parties faced challenges.
+            In Tamil Nadu, the Indian National Developmental Inclusive Alliance (INDIA) coalition, led by the Dravida Munnetra Kazhagam (DMK), swept the state, securing all 39 seats. The BJP's attempts to expand its influence were unsuccessful.
+            In Karnataka, the Congress performed strongly, securing significant victories, while the BJP’s influence diminished. The state's political landscape shifted further in favor of the Congress after their 2023 state election win.
+            In Andhra Pradesh, YSR Congress Party retained its grip, securing a majority of seats, while the BJP faced challenges despite efforts to gain a foothold. Similarly, in Telangana, BRS (Bharat Rashtra Samithi) dominated, further cementing KCR's (K. Chandrashekar Rao) influence.
+            In Kerala, the Left Democratic Front (LDF), led by the Communist Party of India (Marxist), fared well, while the BJP struggled to make significant inroads.
+            Overall, Southern India maintained its regional stronghold, with the BJP struggling in several states despite its efforts to expand its presence.`,
 
-    let aggregatedData = cleanData.reduce((acc, datapt) => {
-      const key = `${datapt.state}-${datapt.party}`;
-      if (!acc[key]) {
-        acc[key] = {
-          state: datapt.state,
-          party: datapt.party,
-          votes: 0,
-          winner: datapt.winner
-        };
-      }
-      acc[key].votes += datapt.votes;
+  'East': `In the 2024 Lok Sabha elections, the results in Eastern India showed significant shifts in political dynamics. Key states in this region include Bihar, West Bengal, Odisha, and Jharkhand.
+          In Bihar, the National Democratic Alliance (NDA), led by the BJP, faced strong competition from the INDIA coalition, which included regional players like the RJD (Rashtriya Janata Dal). Despite a challenging race, the NDA managed to secure several key seats, though it faced a notable challenge from the alliance, which performed better than expected.
+          In West Bengal, Chief Minister Mamata Banerjee's Trinamool Congress (TMC) remained dominant, winning the majority of seats in the state. The TMC’s stronghold in Bengal was largely intact, with the BJP failing to make significant inroads compared to previous elections.
+          In Odisha, the Biju Janata Dal (BJD), led by Naveen Patnaik, maintained its grip on the state's politics, securing a large share of the seats. The BJD’s regional influence was unchallenged, despite the national contest involving the BJP and Congress.
+          Overall, Eastern India in 2024 saw a mix of regional dominance and intense competition from the national parties, with regional parties like the TMC, BJD, and JMM playing pivotal roles in their respective states, alongside the increasing influence of the INDIA alliance.`,
 
-      return acc;
-    }, {});
+  'North-East': `The results of the 2024 Lok Sabha elections in the North-Eastern states reveal both gains and setbacks for the BJP-led NDA coalition. The BJP maintained strongholds in Arunachal Pradesh and Tripura, with key victories from leaders like Union Minister Kiren Rijiju and former Tripura Chief Minister Biplab Kumar Dev. However, the region saw significant losses, particularly in states where Christian voters are influential, such as Manipur, Meghalaya, and Nagaland. In Manipur, both seats were lost to Congress, with the Meitei community expressing dissatisfaction with the BJP's handling of the state's violence.
+                In Meghalaya, the ruling NPP's positions in both Tura and Shillong were overturned, with Congress and regional party VPP making notable gains. Nagaland also saw the NDA's candidate lose the sole seat to Congress. Meanwhile, Assam witnessed the BJP retaining its strong presence with 9 out of 11 seats, despite competition from Congress, which secured notable wins in minority-dominated constituencies like Dhubri and Karimganj.
+                Overall, the NDA secured 16 seats, while Congress made inroads with 7, and regional parties such as VPP and ZPM won in Meghalaya and Mizoram.`,
 
-    aggregatedData = Object.values(aggregatedData)
-      .sort((a, b) => a.state.localeCompare(b.state))
-      .reduce((sortedObj, datapt) => {
-        const key = `${datapt.state}-${datapt.party}`;
-        sortedObj[key] = datapt;
-        return sortedObj;
-      }, {});
-
-    console.log("AGG", aggregatedData)
-
-    let partyWiseData = cleanData.reduce((acc, datapt) => {
-      const { party, votes} = datapt;
-
-      if (!acc[party]) {
-        acc[party] = {
-          party,
-          votes: 0,
-        };
-      }
-      acc[party].votes += votes;
-
-      return acc;
-    }, {});
-
-    partyWiseData = Object.values(partyWiseData);
-    console.log("Party-wise Aggregation:", partyWiseData);
-
-    const stateWiseData = Object.values(aggregatedData).reduce((acc, datapt) => {
-      if (!acc[datapt.state]) {
-        acc[datapt.state] = [];
-      }
-      acc[datapt.state].push({
-        party: datapt.party,
-        votes: datapt.votes,
-        winner: datapt.winner
-      });
-      return acc;
-    }, {});
-
-    stateWiseData.India = partyWiseData;
-    console.log(stateWiseData);
-    return stateWiseData;
-  } catch (error) {
-    console.error("Error processing CSV data:", error);
-  }
+  'India': `The 2024 Lok Sabha Elections marked a defining moment in India's democratic journey, showcasing the resilience and vibrancy of the world's largest democracy. Held in a phased manner across the country, the elections saw an unprecedented voter turnout, reflecting the growing engagement of the Indian electorate. This election was pivotal in shaping the 18th Lok Sabha, with major political players like the Bharatiya Janata Party (BJP), Indian National Congress (INC), and a coalition of regional parties vying for dominance. Key campaign themes included economic growth, unemployment, social justice, climate change, and India's global standing. Digital technologies and social media played a transformative role in reaching voters, especially the youth and first-time voters, underlining the changing dynamics of political communication in India.
+            The 2024 elections were also notable for their emphasis on inclusivity and transparency, with the Election Commission of India introducing various measures to facilitate accessible and secure voting. Electronic Voting Machines (EVMs) with Voter-Verifiable Paper Audit Trails (VVPATs) were extensively used, ensuring the integrity of the process. Additionally, the elections witnessed a significant representation of women and marginalized communities, reflecting India's ongoing efforts towards a more representative political system. As a historical milestone, the 2024 Lok Sabha elections reaffirmed India's commitment to its democratic ethos, setting the stage for the nation's socio-political and economic trajectory in the years to come.`
 };
 
 const PieChart = () => {
@@ -85,9 +41,105 @@ const PieChart = () => {
   const [stateInfo, setStateInfo] = useState("");
 
   useEffect(() => {
-    dataReader().then((data) => {
-      setStateWiseData(data);
-    });
+    const fetchData = async () => {
+      const fileName = './LS_2024.csv';
+      try {
+        const data = await d3.csv(fileName);
+        const cleanData = [];
+        data.forEach((d) => {
+          let state = d.STATE;
+          let party = d.PARTY;
+          let votes = +d.TOTALVOTES;
+          let winner = +d.WINNER;
+          cleanData.push({ state, party, votes, winner });
+        });
+
+        const stateToRegionMap = {
+          "Andaman & Nicobar Islands": "East",
+          "Andhra Pradesh": "South",
+          "Arunachal Pradesh": "North-East",
+          "Assam": "North-East",
+          "Bihar": "East",
+          "Chandigarh": "North",
+          "Chhattisgarh": "North",
+          "Dadra & Nagar Haveli": "West",
+          "Daman & Diu": "West",
+          "Goa": "West",
+          "Gujarat": "West",
+          "Haryana": "North",
+          "Himachal Pradesh": "North",
+          "Jammu & Kashmir": "North",
+          "Jharkhand": "East",
+          "Karnataka": "South",
+          "Kerala": "South",
+          "Lakshadweep": "South",
+          "Madhya Pradesh": "North",
+          "Maharashtra": "West",
+          "Manipur": "North-East",
+          "Meghalaya": "North-East",
+          "Mizoram": "North-East",
+          "Nagaland": "North-East",
+          "NCT of Delhi": "North",
+          "Odisha": "East",
+          "Puducherry": "South",
+          "Punjab": "North",
+          "Rajasthan": "West",
+          "Sikkim": "East",
+          "Tamil Nadu": "South",
+          "Telangana": "South",
+          "Tripura": "North-East",
+          "Uttar Pradesh": "North",
+          "Uttarakhand": "North",
+          "West Bengal": "East",
+          "Ladakh": "North",
+          "India": "India",
+        };
+
+        let aggregatedData = cleanData.reduce((acc, datapt) => {
+          const region = stateToRegionMap[datapt.state];
+          const key = `${region}-${datapt.party}`;
+          if (!acc[key]) {
+            acc[key] = {
+              region: region,
+              party: datapt.party,
+              votes: 0,
+              winner: datapt.winner
+            };
+          }
+          acc[key].votes += datapt.votes;
+          return acc;
+        }, {});
+
+        const stateWiseData = Object.values(aggregatedData).reduce((acc, datapt) => {
+          if (!acc[datapt.region]) {
+            acc[datapt.region] = [];
+          }
+          acc[datapt.region].push({
+            party: datapt.party,
+            votes: datapt.votes,
+            winner: datapt.winner
+          });
+          return acc;
+        }, {});
+
+        stateWiseData["India"] = cleanData.reduce((acc, datapt) => {
+          const { party, votes } = datapt;
+          const existing = acc.find((entry) => entry.party === party);
+          if (existing) {
+            existing.votes += votes;
+          } else {
+            acc.push({ party, votes });
+          }
+          return acc;
+        }, []);
+
+        setStateWiseData(stateWiseData);
+      } catch (error) {
+        console.error("Error processing CSV data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -172,7 +224,8 @@ const PieChart = () => {
         .style("font-size", "12px")
         .style("fill", "#333");
 
-      setStateInfo(`Showing results for: ${stateData}. Total Votes: ${data.reduce((sum, d) => sum + d.votes, 0)}`);
+
+      setStateInfo(REGION_INFO[stateData]);
     };
 
     renderPie(stateWiseData[stateData]);
@@ -187,20 +240,27 @@ const PieChart = () => {
         Select a region to view the distribution of votes among major political parties.
       </Typography>
       <Box sx={{ marginBottom: 2 }}>
-        <Select value={stateData} onChange={(e) => setStateData(e.target.value)}>
-          {Object.keys(stateWiseData).map((state) => (
+        <Select
+          value={stateData}
+          onChange={(e) => setStateData(e.target.value)}
+        >
+          {Object.keys(stateWiseData || {}).map((state) => (
             <MenuItem key={state} value={state}>
               {state}
             </MenuItem>
           ))}
         </Select>
       </Box>
-      
-      <Box sx={{ marginTop: 2, textAlign: "right" }}>
-        <Typography variant="h6">{stateInfo}</Typography>
+
+      <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}>
+        <svg ref={ref} style={{ width: "70%" }}></svg>
+        <Box sx={{ width: "30%", paddingTop: "20px", paddingRight: "10px" }}>
+          <Typography variant="h6" sx={{ fontSize: "0.9rem", textAlign: "left" }}>
+            {stateInfo}
+          </Typography>
+        </Box>
       </Box>
-      
-      <svg ref={ref}></svg>
+
     </Paper>
   );
 };
