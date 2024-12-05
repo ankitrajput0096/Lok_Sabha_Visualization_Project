@@ -360,7 +360,7 @@ let animationFrameId = null;
 
 function scrollTimeline() {
   if (!animationPaused) {
-      offset += (gap/120) * direction;
+      offset += (gap/140) * direction;
       if (Math.abs(offset) > gap * (data.length - 5) + initialOffset || offset > 0) {
           direction *= -1; // Reverse direction
       }
@@ -379,7 +379,7 @@ function updateTimelineLine() {
     if (firstCard && lastCard) {
         const firstCardX = firstCard.getBoundingClientRect().left - svg.node().getBoundingClientRect().left;
         const lastCardX = lastCard.getBoundingClientRect().right - svg.node().getBoundingClientRect().left;
-        timelineLine.attr("x1", firstCardX + 95)
+        timelineLine.attr("x1", firstCardX + 90)
                     .attr("x2", lastCardX - 10);
     }
 }
