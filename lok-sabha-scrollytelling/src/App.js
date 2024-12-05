@@ -11,6 +11,8 @@ import ScrollJackingComponent from "./component/ScrollSwitchView";
 import ImagesForMap from "./component/MapImage";
 import ImagesForMap2 from "./component/MapImage2";
 import ChoroplethMap from "./component/ScrollSwitchView2";
+import Footer from "./component/Footer";
+import Introduction from "./component/Intro";
 
 function App() {
   useScrollAnimations();
@@ -19,55 +21,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Lok Sabha Elections 2024</h1>
-        <nav>
-          <button
-            onClick={() =>
-              document
-                .querySelector(".BubbleChart")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            BubbleChart
-          </button>
-          <button
-            onClick={() =>
-              document
-                .querySelector(".timeline")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Timeline
-          </button>
-          <button
-            onClick={() =>
-              document
-                .querySelector(".barchart")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            BarChart
-          </button>
-          <button
-            onClick={() =>
-              document
-                .querySelector(".piechart")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Pie Chart
-          </button>
-          <button
-            onClick={() =>
-              document
-                .querySelector(".thematicmap")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Thematic Map
-          </button>
-        </nav>
       </header>
 
+      <div className="">
+          <Introduction />
+        </div>
       <main>
         <section className="section BubbleChart" style={{marginTop:"5%"}}>
           <BubbleChart />
@@ -102,7 +60,7 @@ function App() {
         </div>
 
       <footer>
-        <p>Lok Sabha Elections 2024 | Scrollytelling Visualization</p>
+          <Footer/>
       </footer>
     </div>
   );
