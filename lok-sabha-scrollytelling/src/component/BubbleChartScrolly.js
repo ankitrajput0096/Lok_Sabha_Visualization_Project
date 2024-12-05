@@ -16,8 +16,8 @@
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import boothImage from "../photos/Picture21.png";
-import pollingImage from "../photos/photo22.avif";
+import boothImage from "../photos/photo23.jpg";
+import pollingImage from "../photos/photo24.avif";
 
 const styles = {
   parent_container: {
@@ -46,9 +46,9 @@ const styles = {
     flexBasis: '52%',
     position: 'sticky',
     width: '100%',
-    height: '55vh',
+    height: '60vh',
     top: '20vh',
-    backgroundColor: '#aaa',
+    //backgroundColor: '#aaa',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -129,14 +129,14 @@ class Demo extends PureComponent {
       img = <img src={pollingImage} alt="Description of the image" class="imageCss"/>;
     }
 
-    let description = <h10>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</h10>;
+    let description = <h10>The elections highlighted India's democratic inclusivity, as voters from various backgrounds actively took part. A striking image of a women casting their vote at a nearby polling booth underscores the accessibility and effectiveness of the electoral process. This scene embodies the dynamic and diverse engagement that characterizes Indian democracy, ensuring every individual plays a role in shaping the country's future.</h10>;
     if(data === 0 || data === 10) {
-      description = <h10>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</h10>;
+      description = <h10>The elections highlighted India's democratic inclusivity, as voters from various backgrounds actively took part. A striking image of a women casting their vote at a nearby polling booth underscores the accessibility and effectiveness of the electoral process. This scene embodies the dynamic and diverse engagement that characterizes Indian democracy, ensuring every individual plays a role in shaping the country's future.</h10>;
     } else if(data === 20) {
-      description = <h10>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </h10>
+      description = <h10>The 2024 Indian Parliament elections, held in seven phases, underscored the nation's steadfast commitment to democracy, with numerous constituencies participating in each phase. This image embodies the essence of democratic spirit, featuring a young women voter proudly displaying their Indian voter ID's—a powerful symbol of women's empowerment in the country.</h10>
     }
     else {
-      description = <h10>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </h10>
+      description = <h10>The 2024 Indian Parliament elections, held in seven phases, underscored the nation's steadfast commitment to democracy, with numerous constituencies participating in each phase. This image embodies the essence of democratic spirit, featuring a young women voter proudly displaying their Indian voter ID's—a powerful symbol of women's empowerment in the country.</h10>
     }
 
     return (

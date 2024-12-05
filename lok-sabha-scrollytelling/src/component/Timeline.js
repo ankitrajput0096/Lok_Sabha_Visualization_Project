@@ -39,7 +39,7 @@ const Timeline = () => {
   
   const width =960
   const height=520
-  console.log(width, height,'=======')
+  //console.log(width, height,'=======')
   const cardColors = ["orange", "lightblue"];
 
   const svg = d3.select("#timeline")
@@ -360,7 +360,7 @@ let animationFrameId = null;
 
 function scrollTimeline() {
   if (!animationPaused) {
-      offset += (gap/140) * direction;
+      offset += (gap/250) * direction;
       if (Math.abs(offset) > gap * (data.length - 5) + initialOffset || offset > 0) {
           direction *= -1; // Reverse direction
       }
@@ -423,6 +423,8 @@ function wrapText(text, str, width) {
 //   <p>sdfsd</p>
 // )  
 return (
+    <div>
+    <h8>Pivotal Moments in India's Democratic Journey</h8>
     <Paper elevation={3} sx={{ padding: 8 }}>
       {/* <Typography variant="h5" gutterBottom>
         Timeline of Key Events - Lok Sabha 2024
@@ -430,10 +432,11 @@ return (
       <Typography>
         Explore the sequence of significant events that influenced the election outcome.
       </Typography> */}
-      
+
       <svg  id = "timeline"></svg>
       
     </Paper>
+    </div>
   );
 };
 
