@@ -112,21 +112,17 @@ class Demo extends PureComponent {
                     {/* Description text */}
                     {value === 10 && (
                       <h10>
-                        Record Voter Turnout: Approximately 642 million voters participated
-                        in the election, marking the highest voter turnout in India's history.
+Record Voter Turnout: The 2024 Lok Sabha elections saw a record-breaking 642 million voters, marking the highest turnout in India's history at over 70%. Women and first-time voters showed remarkable participation, reflecting growing political awareness. The Election Commission's initiatives, such as mobile polling stations and voter education drives, ensured accessibility and inclusivity. Advanced technologies like EVMs and VVPATs enhanced trust in the electoral process, underscoring India's democratic vibrancy.
                       </h10>
                     )}
                     {value === 20 && (
                       <h10>
-                        BJP's Loss of Single-Party Majority: The Bharatiya Janata Party (BJP),
-                        led by Prime Minister Narendra Modi, secured 240 seats.
+BJP's Loss of Single-Party Majority: The Bharatiya Janata Party (BJP), led by Prime Minister Narendra Modi, secured 240 seats in the 2024 Lok Sabha elections, falling short of the 272-seat majority needed to govern independently. This marked a significant decline from their earlier majorities, highlighting the rising influence of regional parties and alliances. Key issues like unemployment, inflation, and controversial policies such as the Agnipath scheme impacted voter sentiment. The BJP now faces the challenge of coalition-building within the National Democratic Alliance (NDA). The results reflect a more fragmented political landscape and shifting voter priorities.
                         </h10>
                     )}
                     {value === 30 && (
                       <h10>
-                        Introduction of 'Vote-from-Home' Facility: For the first time in a Lok
-                        Sabha election, the Election Commission implemented a 'vote-from-home'
-                        option.
+Introduction of 'Vote-from-Home' Facility: In a historic move, the Election Commission introduced the 'vote-from-home' option for the 2024 Lok Sabha elections. This facility was designed for senior citizens (80+), persons with disabilities, and those with mobility constraints. Mobile polling teams with secure electronic voting machines facilitated the process, ensuring accessibility and transparency. This initiative aimed to boost voter participation while modernizing India’s electoral system.
                         </h10>
                     )}
                   </div>
