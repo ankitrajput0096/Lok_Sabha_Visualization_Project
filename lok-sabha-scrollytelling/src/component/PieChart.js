@@ -96,7 +96,8 @@ const PieChart = () => {
         };
 
         let aggregatedData = cleanData.reduce((acc, datapt) => {
-          const region = stateToRegionMap[datapt.state];
+          const region = stateToRegionMap[datapt.state.trim()] || "unknown";
+          if(region === "unknown") return acc;
           const key = `${region}-${datapt.party}`;
           if (!acc[key]) {
             acc[key] = {
@@ -254,7 +255,7 @@ const PieChart = () => {
 
       <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}>
         <svg ref={ref} style={{ width: "70%" }}></svg>
-        <Box sx={{ width: "30%", paddingTop: "20px", paddingRight: "10px" }}>
+        <Box sx={{ width: "35%", paddingTop: "20px", paddingRight: "10px" }}>
           <Typography variant="h6" sx={{ fontSize: "0.9rem", textAlign: "left" }}>
             {stateInfo}
           </Typography>
