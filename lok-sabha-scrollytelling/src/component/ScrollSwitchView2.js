@@ -93,55 +93,55 @@ class Demo extends PureComponent {
                   >
                     {/* Description text */}
                     {value === 1 && (
-                      <p>
+                     <h10>
                         Highlights: Re-polling was necessitated in certain areas due to
                         incidents of violence and technical issues. For instance, 11 polling
                         stations in Inner Manipur underwent re-polling on April 22, and eight
                         stations in Arunachal Pradesh on April 24.
-                      </p>
+                        </h10>
                     )}
                     {value === 2 && (
-                      <p>
+                         <h10>
                         Highlights: Notable candidates included Rahul Gandhi and Hema Malini.
                         Re-polling occurred in select areas due to disruptions; for example, a
                         polling station in Chamarajanagar, Karnataka, on April 29, and six
                         stations in Outer Manipur on April 30.
-                      </p>
+                        </h10>
                     )}
                     {value === 3 && (
-                      <p>
+                          <h10>
                         Highlights: Prime Minister Narendra Modi cast his vote in this phase
                         in Gujarat. The voter turnout was approximately 65.68%, with 17.24
                         crore citizens eligible to vote.
-                      </p>
+                        </h10>
                     )}
                     {value === 4 && (
-                      <p>
+                          <h10>
                         Highlights: This phase included key regions such as parts of Uttar
                         Pradesh and Bihar. Voter participation was robust, reflecting the
                         electorate engagement.
-                      </p>
+                        </h10>
                     )}
                     {value === 5 && (
-                      <p>
+                         <h10>
                         Highlights: Voting took place in significant areas, including parts of
                         Rajasthan and Madhya Pradesh. Despite high temperatures, voter turnout
                         remained steady.
-                      </p>
+                        </h10>
                     )}
                     {value === 6 && (
-                      <p>
+                             <h10>
                         Highlights: Delhi was among the regions that voted in this phase. The
                         Election Commission implemented measures to ensure smooth polling amid
                         the summer heat.
-                      </p>
+                        </h10>
                     )}
                     {value === 7 && (
-                      <p>
+                          <h10>
                         Highlights: This final phase covered areas in Punjab and parts of
                         Uttar Pradesh. Re-polling was ordered in two booths in West Bengal due
                         to reported irregularities.
-                      </p>
+                      </h10>
                     )}
                   </div>
                 </Step>

@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import BubbleChart from "./component/BubbleChart";
 import PieChart from "./component/PieChart";
-import ThematicMap from "./component/ThematicMap";
 import Timeline from "./component/Timeline";
 import BubbleChartScrolly from "./component/BubbleChartScrolly"
 import useScrollAnimations from "./hooks/useScrollAnimations";
@@ -13,6 +12,7 @@ import ImagesForMap2 from "./component/MapImage2";
 import ChoroplethMap from "./component/ScrollSwitchView2";
 import Footer from "./component/Footer";
 import Introduction from "./component/Intro";
+import Conclusion from "./component/conclusion";
 
 function App() {
   useScrollAnimations();
@@ -54,6 +54,9 @@ function App() {
         </div>
       <div className="">
           <ChoroplethMap />
+        </div>
+        <div className="">
+          <Conclusion />
         </div>
         <div className="">
           <ImagesForMap2 />

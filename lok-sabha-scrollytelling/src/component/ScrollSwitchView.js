@@ -111,23 +111,23 @@ class Demo extends PureComponent {
                   >
                     {/* Description text */}
                     {value === 10 && (
-                      <p>
+                      <h10>
                         Record Voter Turnout: Approximately 642 million voters participated
                         in the election, marking the highest voter turnout in India's history.
-                      </p>
+                      </h10>
                     )}
                     {value === 20 && (
-                      <p>
+                      <h10>
                         BJP's Loss of Single-Party Majority: The Bharatiya Janata Party (BJP),
                         led by Prime Minister Narendra Modi, secured 240 seats.
-                      </p>
+                        </h10>
                     )}
                     {value === 30 && (
-                      <p>
+                      <h10>
                         Introduction of 'Vote-from-Home' Facility: For the first time in a Lok
                         Sabha election, the Election Commission implemented a 'vote-from-home'
                         option.
-                      </p>
+                        </h10>
                     )}
                   </div>
                 </Step>

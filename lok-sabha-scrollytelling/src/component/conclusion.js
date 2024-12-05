@@ -4,14 +4,14 @@ import { Scrollama, Step } from 'react-scrollama';
 
 const styles = {
   graphicContainer: {
-    padding: '7vh 4vw 7vh',
+    padding: '0vh 4vw 0vh',
     display: 'flex',
     justifyContent: 'space-between',
     color: 'black'
   },
   graphic: {
     position: 'sticky',
-    height: '70vh',
+    //height: '70vh',
     display: 'flex',
     alignItems: 'center',
     overflow: 'hidden', // Ensure content does not overflow the container
@@ -55,28 +55,17 @@ class Demo extends PureComponent {
     const img = 
     <div>
       <h10> 
-The Lok Sabha elections 2024, a cornerstone of India’s democracy, will determine
- the composition of the 18th Lok Sabha, the lower house of Parliament. Established 
- in 1951-52 with India’s first general elections, the Lok Sabha represents the direct 
- voice of over 900 million voters, making these elections the largest democratic exercise globally. 
- The elections are conducted every five years, with the 2024 polls expected to be held in 7-8 
- phases between April and May. The house comprises 543 elected members, with a majority threshold of 
- 272 seats required to form the government. Key players in the election include the 
- Bharatiya Janata Party (BJP), led by Prime Minister Narendra Modi, the Indian National Congress (INC), and 
- other influential regional parties like the Trinamool Congress (TMC), Dravida Munnetra Kazhagam (DMK), and 
- Aam Aadmi Party (AAP). These elections are pivotal in shaping the country’s political landscape, reflecting 
- its diversity and regional aspirations.</h10>
+      The 2024 Lok Sabha elections in India, conducted in seven phases from April to June, saw intense competition among 
+      political parties. Initially, the BJP faced setbacks, particularly in northern states like Uttar Pradesh, where its 
+      seat count dropped from 64 in 2019 to 33, with the opposition alliance led by the Samajwadi Party making significant 
+      gains. However, the BJP staged a remarkable comeback in the later phases, leveraging welfare schemes, national security 
+      narratives, and strong grassroots campaigns. The party secured major wins in states like Maharashtra and other key regions, 
+      ultimately winning 240 seats. With its National Democratic Alliance (NDA) partners, the coalition amassed 293 seats, surpassing 
+      the majority mark of 272. Prominent leaders, including Prime Minister Narendra Modi, retained their constituencies, solidifying 
+      the BJP’s leadership and marking Modi's third consecutive term as Prime Minister. This election reaffirmed Modi's enduring 
+      influence in Indian politics and the BJP's ability to navigate challenges to maintain dominance.</h10>
  <br></br>
  <br></br>
-      <h10> Managing such a vast electoral process is a herculean task overseen by the Election Commission of India (ECI), 
-        an autonomous body ensuring fair and transparent voting. Technology plays a crucial role, with tools like 
-        Electronic Voting Machines (EVMs), Voter-Verified Paper Audit Trails (VVPATs), and online voter services facilitating 
-        efficiency. Over a million polling stations are set up across the country, with special logistical arrangements for 
-        remote and challenging terrains. Millions of personnel, including polling officers and security forces, are deployed, 
-        and security is heightened in sensitive areas. Awareness campaigns like SVEEP encourage voter participation, 
-        ensuring inclusivity for all, including differently-abled and senior citizens. The Lok Sabha elections are a 
-        testament to the strength of India’s democratic fabric, showcasing a blend of tradition, modernity, and an unwavering 
-        commitment to empowering citizens through the electoral process.</h10>;
         </div>;
 
     return (

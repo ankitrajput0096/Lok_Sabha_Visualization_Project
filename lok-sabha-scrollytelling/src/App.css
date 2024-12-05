@@ -2,7 +2,6 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  /* background-color: #f5f5f5; */
 }
 
 .App-header {
@@ -64,12 +63,21 @@ h1 {
   z-index: 1;
   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
+h9 {
+  font-size: 1.4em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #0f14a9, #2ca2e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  z-index: 1;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
 h10 {
   font-size: 1.2em;
   font-weight: 700;
-  /* text-transform: uppercase; */
   letter-spacing: 2px;
-  text-align: center;
   background: linear-gradient(90deg, #0f14a9, #2ca2e6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

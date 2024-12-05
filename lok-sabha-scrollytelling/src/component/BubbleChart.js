@@ -290,6 +290,7 @@ svg
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
       .style("font-weight", "bold")
+      .attr("class", "h9") // Add this line to assign the h10 class
       .text("Election Insights: Voter Turnout by Phase");
   }, []);
 

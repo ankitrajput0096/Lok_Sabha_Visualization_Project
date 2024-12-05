@@ -267,7 +267,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
     });
   }, [selectedPhase]);
 
-  console.log("the selected Phase is: ", selectedPhase);
+  // console.log("the selected Phase is: ", selectedPhase);
 
   let thePhase = undefined;
   if(selectedPhase !== undefined) {
@@ -277,11 +277,11 @@ const ChoroplethMap = ({ selectedPhase }) => {
   return (
     <Paper elevation={3} sx={{ padding: 2 }}>
       <Typography variant="h6" gutterBottom style={{ marginLeft: "100px", marginTop: "60px" }}>
-        Lok Sabha Elections 2024{thePhase}
+         <h9>Lok Sabha Elections 2024{thePhase}</h9>
       </Typography>
       <svg ref={svgRef} width="800" height="500"></svg>
       <Box sx={{ marginTop: 0, marginLeft: "50px" }}>
-        <Typography variant="h7">Party Color Legend:</Typography>
+        <h10>Party Color Legend:</h10>
         <Grid container spacing={1}>
           {Object.entries(partyColors).map(([party, color]) => (
             <Grid item xs={6} md={3} key={party}>

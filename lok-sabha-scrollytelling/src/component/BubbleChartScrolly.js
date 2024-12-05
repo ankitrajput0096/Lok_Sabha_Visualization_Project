@@ -16,8 +16,8 @@
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import boothImage from "../images/booth.jpg";
-import pollingImage from "../images/polling.jpg";
+import boothImage from "../photos/Picture21.png";
+import pollingImage from "../photos/photo22.avif";
 
 const styles = {
   parent_container: {
@@ -43,7 +43,7 @@ const styles = {
     justifyContent: 'space-between',
   },
   graphic: {
-    flexBasis: '60%',
+    flexBasis: '52%',
     position: 'sticky',
     width: '100%',
     height: '55vh',
@@ -129,14 +129,14 @@ class Demo extends PureComponent {
       img = <img src={pollingImage} alt="Description of the image" class="imageCss"/>;
     }
 
-    let description = <p>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</p>;
+    let description = <h10>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</h10>;
     if(data === 0 || data === 10) {
-      description = <p>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</p>;
+      description = <h10>The elections showcased India's democratic inclusiveness, with voters from diverse backgrounds actively participating. The image of a woman casting her vote using an Electronic Voting Machine (EVM) highlights the accessibility and efficiency of the electoral process. It reflects the vibrant and diverse participation that defines Indian democracy, ensuring every voice contributes to shaping the nation's future.</h10>;
     } else if(data === 20) {
-      description = <p>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </p>
+      description = <h10>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </h10>
     }
     else {
-      description = <p>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </p>
+      description = <h10>The Indian Parliament 2024 elections, conducted in seven phases, highlighted India's commitment to democracy, with a large number of constituencies voting in each phase. This image captures the spirit of democracy, showcasing an elderly voter proudly displaying his inked finger, a testament to the participation of citizens across all age groups. </h10>
     }
 
     return (
