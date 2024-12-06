@@ -379,8 +379,8 @@ function updateTimelineLine() {
     if (firstCard && lastCard) {
         const firstCardX = firstCard.getBoundingClientRect().left - svg.node().getBoundingClientRect().left;
         const lastCardX = lastCard.getBoundingClientRect().right - svg.node().getBoundingClientRect().left;
-        timelineLine.attr("x1", firstCardX + 90)
-                    .attr("x2", lastCardX - 10);
+        timelineLine.attr("x1", firstCardX + 120)
+                    .attr("x2", lastCardX + 240);
     }
 }
 
