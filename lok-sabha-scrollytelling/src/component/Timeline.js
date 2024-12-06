@@ -1,7 +1,6 @@
 import React, { useEffect, useRef,  } from "react";
 import * as d3 from "d3";
 import { Typography, Paper } from "@mui/material";
-// import styles from '../Timeline.module.css';
 
 
 const Timeline = () => {
@@ -9,14 +8,7 @@ const Timeline = () => {
   const a = useRef(false);
 
 
-  // useEffect(()=>{
-  //   if(a.current){
-  //     return
-  //   }
-  //   a.current=true
-  //   console.log('ABC ====');
-    
-  // },[])
+  
 
   useEffect(() => {
     if(a.current){
@@ -39,7 +31,6 @@ const Timeline = () => {
   
   const width =960
   const height=520
-  //console.log(width, height,'=======')
   const cardColors = ["orange", "lightblue"];
 
   const svg = d3.select("#timeline")
@@ -55,17 +46,16 @@ defs.append("pattern")
     .append("image")
     .attr("href", "/images/image.png")
     
-    .attr("x", -width + 1150) // Shift the image to the left
+    .attr("x", -width + 1150) 
     .attr("y", -height / 4 +120);
 
     svg.insert("rect", ":first-child")
     .attr("width", width * 4)
     .attr("height", height + 100)
     
-    // .attr("fill", "rgba(230, 230, 250, 0.5)")
     .attr("fill", "url(#bg-image)")
     .attr("x", -width);
-      // Shift the rectangle to the left
+      
 
 const timelineY = height / 2;
 
@@ -105,14 +95,12 @@ detailBox.append("rect")
     .attr("y", margin + 50)
     .attr("width", detailBoxWidth)
     .attr("height", height / 2 + 70)
-    // .attr("fill", "#f5f5f5")
-    // .attr("fill", "rgba(255, 255, 255, 1)") // Semi-transparent white background
+    
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .attr("rx", 30)  // Add this line for rounded corners
+    .attr("rx", 30) 
     .attr("ry", 30);
 
-// Add the new rectangle block for the title
 detailBox.append("rect")
     .attr("x", margin + 350)
     .attr("y", margin + 50)
@@ -121,7 +109,7 @@ detailBox.append("rect")
     .attr("fill", "lightgreen")
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .attr("rx", 20)  // Add this line for rounded corners
+    .attr("rx", 20)  
     .attr("ry", 20);
 
 const detailContent = detailBox.append("g")
@@ -136,8 +124,7 @@ const detailContent = detailBox.append("g")
     .attr("fill", "none")
     .attr("stroke", "black")
     .attr("stroke-width", 3)
-    // .attr("rx", 30)  // Add this line for rounded corners
-    // .attr("ry", 30);
+
 
     detailContent.append("text")
     .attr("class", "detail-title")
@@ -155,7 +142,7 @@ detailContent.append("image")
     .attr("width", 340)
     .attr("height", 550)
     .attr("preserveAspectRatio", "xMidYMid slice")
-    .attr("rx", 30)  // Add this line for rounded corners
+    .attr("rx", 30)  
     .attr("ry", 30);
     
 
@@ -239,7 +226,7 @@ closeButton.on("click", () => {
 
     const cardY = isAbove ? timelineY - 45 : timelineY + 45;
     timelineGroup.append("line")
-    .attr("stroke", "#000")        // Line color (black)
+    .attr("stroke", "#000")       
     .attr("stroke-width", 2)
         .attr("x1", x)
         .attr("x2", x)
@@ -248,9 +235,7 @@ closeButton.on("click", () => {
 
         const card = timelineGroup.append("g")
         .attr("class", "card")
-  //       .attr("fill", "#f0f0f0")     // Fill color
-  // .attr("stroke-width", 1)     // Stroke width
-  // .attr("cursor", "pointer")   // Cursor on hover
+
   
         .attr("transform", `translate(${x - cardWidth / 2}, ${isAbove ? cardY - cardHeight : cardY})`);
     
@@ -293,18 +278,17 @@ closeButton.on("click", () => {
         .attr("fill", "none")
         .attr("stroke", "black")
         .attr("stroke-width", 2)
-        .attr("rx", 10)  // Add this line for rounded corners
+        .attr("rx", 10)  
     .attr("ry", 10);
 
         card.append("text")
-          // Set font size
         .attr("pointer-events", "none")
         .attr("x", cardWidth / 2)
         .attr("y", 111)
         .attr("text-anchor", "middle")
         .attr("fill", "black")
         .style("font-size", "17px")
-        .attr("font-weight", "bold")  // Add this line to make the text bold
+        .attr("font-weight", "bold")  
         .text(d.event);
 
     card.on("click", function(event) {
@@ -355,17 +339,17 @@ closeButton.on("click", () => {
 
 
 
-let direction = -1; // -1 for left, 1 for right
+let direction = -1; 
 let animationFrameId = null;
 
 function scrollTimeline() {
   if (!animationPaused) {
       offset += (gap/250) * direction;
       if (Math.abs(offset) > gap * (data.length - 5) + initialOffset || offset > 0) {
-          direction *= -1; // Reverse direction
+          direction *= -1; 
       }
       timelineGroup.attr("transform", `translate(${initialOffset + offset + 20}, 0)`);
-      updateTimelineLine(); // Add this line to update the timeline
+      updateTimelineLine(); 
       requestAnimationFrame(scrollTimeline);
   }
 }
@@ -419,19 +403,11 @@ function wrapText(text, str, width) {
 
   }, []);
 
-// return (
-//   <p>sdfsd</p>
-// )  
+ 
 return (
     <div style={{marginTop:"3%"}}>
     <h8>Pivotal Moments in India's Democratic Journey</h8>
     <Paper elevation={3} sx={{ padding: 8 }} style={{marginTop:"3%"}}>
-      {/* <Typography variant="h5" gutterBottom>
-        Timeline of Key Events - Lok Sabha 2024
-      </Typography>
-      <Typography>
-        Explore the sequence of significant events that influenced the election outcome.
-      </Typography> */}
 
       <svg  id = "timeline"></svg>
       
