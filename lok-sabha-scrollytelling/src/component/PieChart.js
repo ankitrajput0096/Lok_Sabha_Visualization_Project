@@ -4,34 +4,32 @@ import { Typography, Paper, Box } from '@mui/material';
 
 const REGION_INFO = {
   'India': `The 2024 Lok Sabha Elections marked a defining moment in India's democratic journey. Held in a phased manner across the country, the elections saw an unprecedented voter turnout, reflecting the growing engagement of the Indian electorate. This election was pivotal in shaping the 18th Lok Sabha, with major political players like the Bharatiya Janata Party (BJP), Indian National Congress (INC), and a coalition of several regional parties. 
-            Electronic Voting Machines (EVMs) with Voter-Verifiable Paper Audit Trails (VVPATs) were extensively used. As a historical milestone, the 2024 Lok Sabha elections reaffirmed India's commitment to its democratic ethos, setting the stage for the nation's socio-political and economic trajectory in the years to come.`, 
+            As a historical milestone, the 2024 Lok Sabha elections reaffirmed India's commitment to its democratic ethos, setting the stage for the nation's socio-political and economic trajectory in the years to come.`, 
 
   'The Northern States': `In the 2024 Lok Sabha elections, northern states exhibited a diverse range of political outcomes. 
           Uttar Pradesh, with its 80 constituencies, remained a stronghold for the BJP, although the party faced increased competition from the Samajwadi Party (SP) and Indian National Congress (INC). 
-          The BJP's performance was notably challenged in areas with significant caste-based voter groups, highlighting the changing political dynamics in the state. 
           In Haryana, the BJP managed to retain control over a majority of seats, but it witnessed a surge in opposition sentiment, with the Indian National Congress and Jannayak Janata Party (JJP) making notable strides. Punjab saw an exciting development with the Aam Aadmi Party (AAP) and Congress gaining ground. `,
           
   'The Western States': `In the 2024 Lok Sabha elections, the Western states of India saw significant shifts, with key victories and notable losses across major parties.
           In Maharashtra, the BJP managed to retain important seats, despite challenges from regional players. 
-          In Gujarat, the BJP continued its dominance, maintaining most of its seats. However, the opposition made some inroads, particularly in regions traditionally held by the BJP. Similarly, Rajasthan witnessed fierce competition, with the Congress gaining a strong foothold in several constituencies.
+          In Gujarat, the BJP continued its dominance, maintaining most of its seats. Similarly, Rajasthan witnessed fierce competition, with the Congress gaining a strong foothold in several constituencies.
           Overall, while the BJP retained a substantial presence in Western India, the opposition, particularly from the Congress and regional parties, managed to make significant inroads.`,
 
   'The Southern States': `In the 2024 Lok Sabha elections, the Southern states saw mixed results, with regional parties maintaining dominance in some areas, while national parties faced challenges.
             In Tamil Nadu, the Indian National Developmental Inclusive Alliance (INDIA) coalition, swept the state, securing all 39 seats.
             In Karnataka, the Congress performed strongly, securing significant victories, while the BJP’s influence diminished. 
             In Andhra Pradesh, YSR Congress Party retained its grip, securing a majority of seats, while the BJP faced challenges. 
-            In Kerala, the Left Democratic Front (LDF), led by the Communist Party of India (Marxist), fared well.
             Overall, Southern India maintained its regional stronghold, with the BJP struggling in several states despite its efforts to expand its presence.`,
 
   'The Eastern States': `In the 2024 Lok Sabha elections, the results in Eastern India showed significant shifts in political dynamics. 
           In Bihar, the National Democratic Alliance (NDA), led by the BJP, faced strong competition from the INDIA coalition. 
-          In West Bengal, Chief Minister Mamata Banerjee's Trinamool Congress (TMC) remained dominant. The TMC’s stronghold in Bengal was largely intact.
+          In West Bengal, Chief Minister Mamata Banerjee's Trinamool Congress (TMC) remained dominant.
           In Odisha, the Biju Janata Dal (BJD), maintained its grip on the state's politics, securing a large share of the seats. 
           Overall, Eastern India in 2024 saw a mix of regional dominance and intense competition from the national parties, with regional parties like the TMC, BJD, and JMM playing pivotal roles in their respective states, alongside the increasing influence of the INDIA alliance.`,
 
   'The Northeastern States': `The results of the 2024 Lok Sabha elections in the North-Eastern states reveal both gains and setbacks for the BJP-led NDA coalition. The BJP maintained strongholds in Arunachal Pradesh and Tripura. However, the region saw significant losses, particularly in states where Christian voters are influential, such as Manipur, Meghalaya, and Nagaland. In Manipur, both seats were lost to Congress, with the Meitei community expressing dissatisfaction with the BJP's handling of the state's violence.
                 Meanwhile, Assam witnessed the BJP retaining its strong presence with 9 out of 11 seats.
-                Overall, the NDA secured 16 seats, while Congress made inroads with 7, and regional parties such as VPP and ZPM won in Meghalaya and Mizoram.`
+                Overall, the NDA secured 16 seats, while Congress made inroads with 7.`
 };
 
 const PieChart = () => {
