@@ -1,205 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import Papa from "papaparse";
 import { Paper, Typography, Box, Grid } from "@mui/material";
 import indiaGeoJSON from "../assets/states.geojson";
+import phasesCSV from "../data/preprocessedStateWinnerDataForChoroplethMap.csv"; // Path to the CSV file
 
 const ChoroplethMap = ({ selectedPhase }) => {
   const svgRef = useRef();
-
- // Election phase data with winning parties for states
- const phases = {
-  "Phase I (April 19)": {
-    states: [
-      "Arunachal Pradesh",
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Jammu & Kashmir",
-      "Manipur",
-      "Meghalaya",
-      "Mizoram",
-      "Nagaland",
-      "Sikkim",
-      "Tripura",
-      "Uttarakhand",
-      "West Bengal",
-      "Andaman & Nicobar Islands",
-      "Lakshadweep",
-      "Dadra and Nagar Haveli and Daman and Diu",
-    ],
-    winners: {
-      "Arunachal Pradesh": "BJP",
-      Assam: "BJP",
-      Bihar: "RJD",
-      Chhattisgarh: "INC",
-      "Jammu & Kashmir": "JKPDP",
-      Manipur: "BJP",
-      Meghalaya: "NPP",
-      Mizoram: "MNF",
-      Nagaland: "NDPP",
-      Sikkim: "SKM",
-      Tripura: "BJP",
-      Uttarakhand: "BJP",
-      "West Bengal": "AITC",
-      "Andaman & Nicobar Islands": "BJP",
-      Lakshadweep: "NCP",
-      "Dadra and Nagar Haveli and Daman and Diu": "BJP",
-      "Andhra Pradesh": "TDP",
-      Telangana: "BJP",
-
-    },
-  },
-  "Phase II (April 26)": {
-    states: [
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Karnataka",
-      "Maharashtra",
-      "Manipur",
-      "Odisha",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Jharkhand",
-      "Jammu & Kashmir",
-    ],
-    winners: {
-      Assam: "BJP",
-      Bihar: "RJD",
-      Chhattisgarh: "INC",
-      Karnataka: "INC",
-      Maharashtra: "BJP",
-      Manipur: "BJP",
-      Odisha: "BJD",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      Jharkhand: "JMM",
-      "Jammu & Kashmir": "JKPDP",
-    },
-  },
-  "Phase III (May 7)": {
-    states: [
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Goa",
-      "Gujarat",
-      "Karnataka",
-      "Madhya Pradesh",
-      "Maharashtra",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Dadra and Nagar Haveli and Daman and Diu",
-      "Jammu & Kashmir",
-    ],
-    winners: {
-      Assam: "BJP",
-      Bihar: "RJD",
-      Chhattisgarh: "INC",
-      Goa: "BJP",
-      Gujarat: "BJP",
-      Karnataka: "INC",
-      "Madhya Pradesh": "BJP",
-      Maharashtra: "BJP",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      "Dadra and Nagar Haveli and Daman and Diu": "BJP",
-      "Jammu & Kashmir": "JKPDP",
-      Kerala: "INC",
-    },
-  },
-  "Phase IV (May 13)": {
-    states: [
-      "Andhra Pradesh",
-      "Bihar",
-      "Jharkhand",
-      "Madhya Pradesh",
-      "Maharashtra",
-      "Odisha",
-      "Telangana",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Jammu & Kashmir",
-    ],
-    winners: {
-      "Andhra Pradesh": "YSRCP",
-      Bihar: "RJD",
-      Jharkhand: "JMM",
-      "Madhya Pradesh": "BJP",
-      Maharashtra: "BJP",
-      Odisha: "BJD",
-      Telangana: "BRS",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      "Jammu & Kashmir": "JKPDP",
-    },
-  },
-  "Phase V (May 20)": {
-    states: [
-      "Bihar",
-      "Jharkhand",
-      "Maharashtra",
-      "Odisha",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Jammu & Kashmir",
-      "Ladakh",
-    ],
-    winners: {
-      Rajasthan: "BJP",
-      Bihar: "RJD",
-      Jharkhand: "JMM",
-      Maharashtra: "BJP",
-      Odisha: "BJD",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      "Jammu & Kashmir": "JKPDP",
-      Ladakh: "Independent",
-      Punjab: "INC",
-    },
-  },
-  "Phase VI (May 25)": {
-    states: [
-      "Bihar",
-      "Haryana",
-      "Jharkhand",
-      "Odisha",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Delhi",
-    ],
-    winners: {
-      Bihar: "RJD",
-      Haryana: "BJP",
-      Jharkhand: "JMM",
-      Odisha: "BJD",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      Delhi: "AAP",
-      "Tamil Nadu": "DMK",
-    },
-  },
-  "Phase VII (June 1)": {
-    states: [
-      "Bihar",
-      "Jharkhand",
-      "Madhya Pradesh",
-      "Punjab",
-      "Uttar Pradesh",
-      "West Bengal",
-      "Chandigarh",
-    ],
-    winners: {
-      Bihar: "RJD",
-      Jharkhand: "JMM",
-      "Madhya Pradesh": "BJP",
-      Punjab: "AAP",
-      "Uttar Pradesh": "BJP",
-      "West Bengal": "AITC",
-      Chandigarh: "BJP",
-    },
-  },
-};
+  const [phases, setPhases] = useState({});
 
   const partyColors = {
     BJP: "#FF5722",
@@ -221,6 +29,24 @@ const ChoroplethMap = ({ selectedPhase }) => {
   };
 
   const normalizeStateName = (name) => name?.trim().toLowerCase();
+
+  // Load and parse the CSV file
+  useEffect(() => {
+    Papa.parse(phasesCSV, {
+      download: true,
+      header: true,
+      complete: (result) => {
+        const phasesData = result.data.reduce((acc, row) => {
+          const { phase, state, winner } = row;
+          if (!acc[phase]) acc[phase] = { states: [], winners: {} };
+          acc[phase].states.push(state);
+          acc[phase].winners[state] = winner;
+          return acc;
+        }, {});
+        setPhases(phasesData);
+      },
+    });
+  }, []);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -272,19 +98,21 @@ const ChoroplethMap = ({ selectedPhase }) => {
           `${matchingState || "Unknown"}: ${party || "No data"}`
         );
     });
-  }, [selectedPhase]);
-
-  // console.log("the selected Phase is: ", selectedPhase);
+  }, [selectedPhase, phases]);
 
   let thePhase = undefined;
-  if(selectedPhase !== undefined) {
-    thePhase = ": "+selectedPhase;
+  if (selectedPhase !== undefined) {
+    thePhase = ": " + selectedPhase;
   }
 
   return (
     <Paper elevation={3} sx={{ padding: 2 }}>
-      <Typography variant="h6" gutterBottom style={{ marginLeft: "100px", marginTop: "60px" }}>
-         <h9>Lok Sabha Elections 2024{thePhase}</h9>
+      <Typography
+        variant="h6"
+        gutterBottom
+        style={{ marginLeft: "100px", marginTop: "60px" }}
+      >
+        <h9>Lok Sabha Elections 2024{thePhase}</h9>
       </Typography>
       <svg ref={svgRef} width="800" height="500"></svg>
       <Box sx={{ marginTop: 0, marginLeft: "50px" }}>
