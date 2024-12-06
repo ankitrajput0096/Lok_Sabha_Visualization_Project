@@ -564,11 +564,7 @@ const styles = {
   graphicContainer: {
     padding: "7vh 4vw 7vh",
     justifyContent: "space-between",
-    display: "flex"
-  },
-  graphicContainers: {
-    padding: "7vh 4vw 7vh",
-    justifyContent: "space-between",
+    display: "flex",
   },
   graphic: {
     flexBasis: "70%",
@@ -595,16 +591,6 @@ const styles = {
     '&:last-child': {
       marginBottom: '200px',
     },
-  },
-  stickyHeading: {
-    position: "sticky",
-    top: "0px", // Adjust to ensure it stays at the top
-    zIndex: 10, // Ensure it is above other elements
-    background: "white", // Optional, ensures text is clear
-    textAlign: "center",
-    fontWeight: "bold",
-    padding: "10px 0",
-    fontSize: "18px",
   },
 };
 
@@ -899,11 +885,9 @@ if (currentStep === 0) {
 
     return (
       <div>
-          <div className={classes.stickyHeading}>
-        Shaping India's 2024 Parliamentary Mandate
-      </div> 
         <div className={classes.graphicContainer}>
           <div className={classes.graphic}>
+          <h10> Shaping India's 2024 Parliamentary Mandate</h10> 
             <svg ref={this.svgRef}></svg>
           </div>
           <h10 className={classes.scroller}>
