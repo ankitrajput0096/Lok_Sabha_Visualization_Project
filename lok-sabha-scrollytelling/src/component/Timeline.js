@@ -423,9 +423,9 @@ function wrapText(text, str, width) {
 //   <p>sdfsd</p>
 // )  
 return (
-    <div>
+    <div style={{marginTop:"3%"}}>
     <h8>Pivotal Moments in India's Democratic Journey</h8>
-    <Paper elevation={3} sx={{ padding: 8 }}>
+    <Paper elevation={3} sx={{ padding: 8 }} style={{marginTop:"3%"}}>
       {/* <Typography variant="h5" gutterBottom>
         Timeline of Key Events - Lok Sabha 2024
       </Typography>

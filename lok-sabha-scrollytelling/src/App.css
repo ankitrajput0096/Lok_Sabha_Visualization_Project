@@ -68,7 +68,7 @@ h8 {
   font-size: 1.8em;
   font-weight: 700;
   margin-left: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background: linear-gradient(90deg, #0f14a9, #2ca2e6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
