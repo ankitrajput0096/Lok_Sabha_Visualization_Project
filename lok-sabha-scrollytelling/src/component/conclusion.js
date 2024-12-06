@@ -11,10 +11,9 @@ const styles = {
   },
   graphic: {
     position: 'sticky',
-    //height: '70vh',
     display: 'flex',
     alignItems: 'center',
-    overflow: 'hidden', // Ensure content does not overflow the container
+    overflow: 'hidden',
   },
   scroller: {
     flexBasis: '0.1%',

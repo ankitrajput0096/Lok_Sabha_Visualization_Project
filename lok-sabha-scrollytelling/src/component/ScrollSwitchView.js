@@ -1,10 +1,9 @@
-// import { color } from 'd3';
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import myImage3 from "../photos/Picture4.jpg"; // Adjust the path to the image
-import myImage4 from "../photos/photo6.jpg"; // Adjust the path to the image
-import myImage5 from "../photos/photo10.jpg"; // Adjust the path to the image
+import myImage3 from "../photos/Picture4.jpg"; 
+import myImage4 from "../photos/photo6.jpg"; 
+import myImage5 from "../photos/photo10.jpg"; 
 
 const styles = {
   parent_container: {
@@ -20,14 +19,14 @@ const styles = {
     left: '50%',
     width: '150%',
     height: 'auto',
-    transform: 'translate(-50%, -50%) scale(0.9)', // Default scale
+    transform: 'translate(-50%, -50%) scale(0.9)', 
     objectFit: 'cover',
-    opacity: 0, // Start fully transparent
-    transition: 'opacity 0.5s ease, transform 0.5s ease', // Smooth fade and scale
+    opacity: 0, 
+    transition: 'opacity 0.5s ease, transform 0.5s ease', 
   },
   imageActive: {
-    opacity: 1, // Fully visible when active
-    transform: 'translate(-50%, -50%) scale(1)', // Normal scale when active
+    opacity: 1, 
+    transform: 'translate(-50%, -50%) scale(1)', 
   },
   graphicContainer: {
     padding: '7vh 4vw 7vh',
@@ -51,7 +50,6 @@ const styles = {
   step: {
     margin: '0 auto 3rem auto',
     padding: '180px 0',
-    //border: '5px solid',
     '& p': {
       textAlign: 'center',
       padding: '1rem',

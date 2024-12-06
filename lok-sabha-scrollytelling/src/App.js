@@ -44,8 +44,6 @@ function App() {
         <div className="">
           <BubbleChartScrolly />
         </div>
-
-
         <section className="section piechart">
           <PieChart />
         </section>

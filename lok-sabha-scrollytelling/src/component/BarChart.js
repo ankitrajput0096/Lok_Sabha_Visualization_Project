@@ -16,7 +16,7 @@ const styles = {
     width: "100%",
     height: "75vh",
     top: "20vh",
-    paddingLeft: "5%", // Added paddingLeft
+    paddingLeft: "5%",
     paddingTop: "9%",
   },
   scroller: {
@@ -71,45 +71,6 @@ class Demo extends PureComponent {
         console.error("Error loading the CSV file:", error);
       });
   }
-  // events = [
-  //   { month: "Oct 2023", BJP: 37, "IND Alliance": 41, Others: 22 },
-  //   { month: "Nov 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
-  //   { month: "Dec 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
-  //   { month: "Jan 2024", BJP: 38, "IND Alliance": 42, Others: 20 },
-  //   { month: "Feb 2024", BJP: 35, "IND Alliance": 45, Others: 20 },
-  //   { month: "Mar 2024", BJP: 37, "IND Alliance": 43, Others: 20 },
-  //   { month: "Apr 2024", BJP: 40, "IND Alliance": 38, Others: 22 },
-  //   { month: "May 2024", BJP: 40, "IND Alliance": 38, Others: 22 },
-  // ];
-  // const parsedData = d3.csvParse(csvData);
-
-  //         // Process the data into a structured format
-  //         const events = parsedData.map(item => ({
-  //           month: item["month"],
-  //           BJP: Number(item["BJP"]),
-  //           "IND Alliance": Number(item["IND Alliance"]),
-  //           Others: Number(item["Others"]),
-  //         }));
-
-  // useEffect(() => {
-  //   d3.csv(phaseWiseVotingData).then((csvData) => {
-  //     const formattedData = csvData.map((d) => ({
-  //       phase: d.phase,
-  //       totalVotes: +d.totalVotes,
-  //       voterTurnout: +d.voterTurnout,
-  //       totalVotesPolled: +d.totalVotesPolled,
-  //       constituencies: +d.constituencies
-  //     }));
-  //     setData(formattedData);
-  //   });
-  // }, []);
-
-  // componentDidMount() {
-  //   this.createChart();
-  //   if (this.state.steps === 0) {
-  //     this.updateChart(0); // Ensure the first month is displayed by default
-  //   }
-  // }
 
   onStepEnter = (e) => {
     const { data } = e;

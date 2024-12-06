@@ -12,7 +12,6 @@ const Footer = () => {
   );
 };
 
-// Optional inline styles
 const styles = {
   footerContainer: {
     backgroundColor: "#f8f9fa",

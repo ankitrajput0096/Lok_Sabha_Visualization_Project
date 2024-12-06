@@ -72,7 +72,6 @@ class Demo extends PureComponent {
     return (
       <div>
         <div className={classes.graphicContainer}>
-          {/* ThematicMap remains steady and updates the selectedPhase */}
           <div className={classes.graphic}>
             <ThematicMap selectedPhase={phases[data - 1]} />
           </div>
@@ -91,7 +90,6 @@ class Demo extends PureComponent {
                       color: value === data ? 'rgba(44,127,184, 1)' : 'white',
                     }}
                   >
-                    {/* Description text */}
                     {value === 1 && (
                      <h10>
                         Highlights: Re-polling was necessitated in certain areas due to

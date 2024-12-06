@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import Papa from "papaparse";
 import { Paper, Typography, Box, Grid } from "@mui/material";
 import indiaGeoJSON from "../assets/states.geojson";
-import phasesCSV from "../data/preprocessedStateWinnerDataForChoroplethMap.csv"; // Path to the CSV file
+import phasesCSV from "../data/preprocessedStateWinnerDataForChoroplethMap.csv";
 
 const ChoroplethMap = ({ selectedPhase }) => {
   const svgRef = useRef();
@@ -30,7 +30,6 @@ const ChoroplethMap = ({ selectedPhase }) => {
 
   const normalizeStateName = (name) => name?.trim().toLowerCase();
 
-  // Load and parse the CSV file
   useEffect(() => {
     Papa.parse(phasesCSV, {
       download: true,
@@ -67,7 +66,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
         .data(geoData.features)
         .join("path")
         .attr("d", path)
-        .attr("fill", "#E0E0E0") // Default gray
+        .attr("fill", "#E0E0E0")
         .attr("stroke", "#000")
         .attr("stroke-width", 0.5)
         .attr("data-state", (d) => normalizeStateName(d.properties.ST_NM))

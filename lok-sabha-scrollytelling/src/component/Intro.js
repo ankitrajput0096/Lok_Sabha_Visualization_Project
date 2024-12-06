@@ -11,12 +11,10 @@ const styles = {
     color: 'black',
   },
   graphic: {
-    // borderRadius: '20px', /* Smooth corners */
     marginTop: '70px',
     position: 'sticky',
     height: '85vh',
     display: 'flex',
-    // alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
     backgroundSize: 'cover',
@@ -28,7 +26,7 @@ const styles = {
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Semi-transparent overlay
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     zIndex: 1,
   },
   textOverlay: {
@@ -37,9 +35,9 @@ const styles = {
     color: 'black',
     textAlign: 'center',
     padding: '20px',
-    backgroundColor: 'white', // White background for text
+    backgroundColor: 'white',
     borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Subtle shadow for emphasis
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     opacity: '0.8',
     margin: '70px',
     height: '25vh',

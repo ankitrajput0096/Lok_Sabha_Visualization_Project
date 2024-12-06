@@ -2,24 +2,24 @@ import { color, zoom } from 'd3';
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
-import myImage1 from "../photos/Election2024cartoon.jpg"; // Adjust the path to the image
+import myImage1 from "../photos/Election2024cartoon.jpg"; 
 
 const styles = {
   parent_container: {
     position: 'relative',
-    width: '300px', /* Set the desired width of the parent container */
-    height: '300px', /* Set the desired height of the parent container */
-    overflow: 'hidden', /* Prevent the image from overflowing */
-    border: '2px solid #ddd' /* Optional: add a border to see boundaries */
+    width: '300px',
+    height: '300px', 
+    overflow: 'hidden', 
+    border: '2px solid #ddd' 
   },
   imageCss: {
-    position: 'absolute', /* Positioning the image inside the container */
+    position: 'absolute', 
     top: '50%',
     left: '50%',
-    width: '150%', /* Increase width to zoom */
-    height: 'auto', /* Maintain aspect ratio */
-    transform: 'translate(-50%, -50%)', /* Center the image */
-    objectFit: 'cover', /* Ensures image covers the container */
+    width: '150%', 
+    height: 'auto', 
+    transform: 'translate(-50%, -50%)', 
+    objectFit: 'cover', 
     zoom: '150%'
   },
   graphicContainer: {
@@ -33,20 +33,19 @@ const styles = {
     width: '100%',
     height: '70vh',
     top: '20vh',
-    //backgroundColor: '#aaa',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden', // Ensure content does not overflow the container
+    overflow: 'hidden', 
     '& img': {
       maxWidth: '100%',
       maxHeight: '100%',
-      objectFit: 'contain', // Ensure the image scales while maintaining aspect ratio
-      transition: 'transform 0.3s ease', // Smooth zoom transition
+      objectFit: 'contain', 
+      transition: 'transform 0.3s ease', 
       zoom: '100%'
     },
     '& img:hover': {
-      transform: 'scale(1.1)', // Slightly enlarge the image on hover
+      transform: 'scale(1.1)', 
     },
     '& p': {
       fontSize: '5rem',
