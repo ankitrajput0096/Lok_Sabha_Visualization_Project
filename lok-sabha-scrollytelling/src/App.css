@@ -99,3 +99,14 @@ h10 {
   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+hP {
+  font-size: 1.3em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #0f14a9, #2ca2e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  z-index: 1;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
