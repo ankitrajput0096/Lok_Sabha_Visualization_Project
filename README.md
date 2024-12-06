@@ -1,8 +1,24 @@
-# Data_Visualization_Project
-
 # Voter Share Analysis - Lok Sabha 2024
 
 This project is a data visualization tool built with React and D3.js that allows users to analyze the distribution of votes among major political parties in the 2024 Lok Sabha elections. The data is creatively visualized through interactive visualizations, such as Bar charts, Bubble graphs, Pie charts and Thematic Maps.
+
+## About the Project
+
+In this project, we examine the story of Lok Sabha Elections 2024. We do so by examining the state-level and nation-wide data that is publically available. From the data, we create various interactive visualizations to help our users understand both - the grassroots view & bird's eye view of the Lok Sabha Elections 2024. 
+
+## Visualizations Used
+
+1. Bar Graphs - Analyzing pre-poll surveys. 
+2. Pie Chart - Visualizing the state/region-wise dominant parties and changes from the previous election cycle.
+3. Bubble Graph - Tracking the phase-wise voter turnout.
+4. Timeline - Juxtaposing various important socio-economic events with election cycle. 
+5. Choropleth map - Examining state wise, phase wise voter distribution.
+
+## Datasets used
+
+1. Dataset from OpenCity: https://data.opencity.in/dataset/parliamentary-elections-2024-results
+2. Kaggle Datasets: https://www.kaggle.com/datasets/nuhmanpk/india-lok-sabha-election-results-2024
+
 
 ## Tech Stack
 
