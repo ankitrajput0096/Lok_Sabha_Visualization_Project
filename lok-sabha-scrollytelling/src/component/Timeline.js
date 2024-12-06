@@ -191,7 +191,7 @@ closeButton.on("click", () => {
 
 
   data.forEach((d, i) => {
-    const x = i * gap + 20;
+    const x = i * gap - 50;
     const isAbove = i % 2 === 0;
 
     const circle = timelineGroup.append("circle")

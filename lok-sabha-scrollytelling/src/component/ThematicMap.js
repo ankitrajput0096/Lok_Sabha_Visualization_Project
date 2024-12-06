@@ -44,6 +44,9 @@ const ChoroplethMap = ({ selectedPhase }) => {
       "Andaman & Nicobar Islands": "BJP",
       Lakshadweep: "NCP",
       "Dadra and Nagar Haveli and Daman and Diu": "BJP",
+      "Andhra Pradesh": "TDP",
+      Telangana: "BJP",
+
     },
   },
   "Phase II (April 26)": {
@@ -102,6 +105,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
       "West Bengal": "AITC",
       "Dadra and Nagar Haveli and Daman and Diu": "BJP",
       "Jammu & Kashmir": "JKPDP",
+      Kerala: "INC",
     },
   },
   "Phase IV (May 13)": {
@@ -142,6 +146,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
       "Ladakh",
     ],
     winners: {
+      Rajasthan: "BJP",
       Bihar: "RJD",
       Jharkhand: "JMM",
       Maharashtra: "BJP",
@@ -150,6 +155,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
       "West Bengal": "AITC",
       "Jammu & Kashmir": "JKPDP",
       Ladakh: "Independent",
+      Punjab: "INC",
     },
   },
   "Phase VI (May 25)": {
@@ -170,6 +176,7 @@ const ChoroplethMap = ({ selectedPhase }) => {
       "Uttar Pradesh": "BJP",
       "West Bengal": "AITC",
       Delhi: "AAP",
+      "Tamil Nadu": "DMK",
     },
   },
   "Phase VII (June 1)": {
@@ -207,8 +214,8 @@ const ChoroplethMap = ({ selectedPhase }) => {
     SKM: "#2ECC71",
     NCP: "#F39C12",
     JMM: "#16A085",
-    YSRCP: "#2980B9",
     BRS: "#9C27B0",
+    DMK: "#6C27B0",
     Independent: "#607D8B",
     AAP: "#00BCD4",
   };
