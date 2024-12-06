@@ -39,10 +39,9 @@ const PieChart = () => {
   const [stateData, setStateData] = useState('India');
   const [stateWiseData, setStateWiseData] = useState({});
   const [stateInfo, setStateInfo] = useState('');
-  const regionRefs = useRef({}); // To keep references to region sections
+  const regionRefs = useRef({});
 
   useEffect(() => {
-    // Load and process CSV data
     const fetchData = async () => {
       const fileName = './LS_2024.csv';
       try {
@@ -154,44 +153,40 @@ const PieChart = () => {
       svg.selectAll('*').remove();
 
       const radius = 200;
-      const color = d3.scaleOrdinal(
-        [...d3.schemeCategory10, ...d3.schemeTableau10, ...d3.schemeSet2, ...d3.schemeSet3, ...d3.schemePastel1, ...d3.schemePastel2]
-          .flat()
-          .slice(0, 100)
-      );
-      color.domain(data.map((d) => d.party));
-
-      // const partyColors = {
-      //   BJP: '#FF9933', // Saffron
-      //   INC: '#138808', // Green
-      //   AAP: '#004BA0', // Blue
-      //   TMC: '#00AEEF', // Light Blue
-      //   'DMK': '#800000', // Maroon
-      //   'Shiv Sena': '#FF4500', // Orange
-      //   'Left Front': '#B22222', // Dark Red
-      //   Others: '#808080', // Gray for other parties
-      // };
-  
-      // // Fallback for undefined parties
-      // const fallbackColor = '#CCCCCC';
-  
-      // // Create a color scale based on fixed party colors
-      // const color = (party) => partyColors[party] || fallbackColor;
-
-      const pie = d3.pie().value((d) => d.votes);
-      const pieData = pie(data);
-      const arc = d3.arc().innerRadius(0).outerRadius(radius);
-      const arcHover = d3.arc().innerRadius(0).outerRadius(radius + 10);
-
-      // svg
-      //   .append('g')
-      //   .attr('transform', 'translate(250,250)')
-      //   .selectAll('path')
-      //   .data(pieData)
-      //   .enter()
-      //   .append('path')
-      //   .attr('d', arc)
-      //   .attr('fill', (d) => color(d.data.party));
+      
+      const partyColors = {
+        BJP: '#ff7f00', 
+        INC: '#1f77b4',
+      };
+      
+      const usedColors = new Set([partyColors.BJP, partyColors.INC]);
+      
+      const getColor = (party) => {
+        if (party === 'BJP') return partyColors.BJP;
+        if (party === 'INC') return partyColors.INC;
+      
+        let randomColor;
+        do {
+          randomColor = getRandomColor();
+        } while (usedColors.has(randomColor));
+        
+        usedColors.add(randomColor);  
+        return randomColor;
+      };
+      
+        const getRandomColor = () => {
+          const letters = '0123456789ABCDEF';
+          let color = '#';
+          for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        };
+      
+        const pie = d3.pie().value((d) => d.votes);
+        const pieData = pie(data);
+        const arc = d3.arc().innerRadius(0).outerRadius(radius);
+        const arcHover = d3.arc().innerRadius(0).outerRadius(radius + 10);
       
         const tooltip = d3
         .select('body')
@@ -213,7 +208,7 @@ const PieChart = () => {
         .enter()
         .append('path')
         .attr('d', arc)
-        .attr('fill', (d, i) => color(i))
+        .attr('fill', (d, i) => getColor(d.data.party))
         .style('cursor', 'pointer')
         .on('mouseover', function (event, d) {
           d3.select(this).transition().duration(200).attr('d', arcHover);
@@ -247,7 +242,7 @@ const PieChart = () => {
         .attr('y', (d, i) => (i % 20) * 20)
         .attr('width', 15)
         .attr('height', 15)
-        .attr('fill', (d, i) => color(i));
+        .attr('fill', (d, i) => getColor(d.data.party));
 
       legend
         .selectAll('text')
@@ -291,7 +286,6 @@ const PieChart = () => {
         <h9>Voter Share Analysis - Lok Sabha 2024</h9>
       </Typography>
       <Box sx={{ display: 'flex' }}>
-        {/* Scrollable Region List */}
         <Box
           sx={{
             width: '30%',
@@ -311,8 +305,8 @@ const PieChart = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: region === stateData ? 'blue' : 'black', // Change text color for selected region
-                  fontWeight: region === stateData ? 'bold' : 'normal', // Make text bold when selected
+                  color: region === stateData ? 'blue' : 'black',
+                  fontWeight: region === stateData ? 'bold' : 'normal',
                 }}
               >
                 <hP>{region}</hP>
@@ -323,9 +317,6 @@ const PieChart = () => {
         </Box>
         <Box sx={{ width: '70%', paddingLeft: 2 }}>
           <svg ref={ref} style={{ width: '100%', height: '660px' }}></svg>
-          {/* <Box>
-            <Typography variant='body1'>{stateInfo}</Typography>
-          </Box> */}
         </Box>
       </Box>
     </Paper>
