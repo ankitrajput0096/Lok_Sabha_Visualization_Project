@@ -8,6 +8,7 @@ import useScrollAnimations from "./hooks/useScrollAnimations";
 import BarChart from "./component/BarChart"
 import ScrollJackingComponent from "./component/ScrollSwitchView";
 import ImagesForMap from "./component/MapImage";
+import ImagesOFCartoon from "./component/CartoonImage";
 import ImagesForMap2 from "./component/MapImage2";
 import ChoroplethMap from "./component/ScrollSwitchView2";
 import Footer from "./component/Footer";
@@ -41,6 +42,9 @@ function App() {
         </section> */}
         <div className="">
           <BarChart />
+        </div>
+        <div className="">
+          <ImagesOFCartoon />
         </div>
         <section className="section piechart">
           <PieChart />
