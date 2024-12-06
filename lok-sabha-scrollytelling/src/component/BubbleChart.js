@@ -13,7 +13,7 @@ const BubbleChart = () => {
   "Phase 5": "<strong> Phase 5 (May 20, 2024): </strong> 49 constituencies in 7 states, including Bihar, Jharkhand, and West Bengal, were covered. The phase played a pivotal role in determining the balance of power, especially in eastern India. Key issues included unemployment, education access, and migration. Bihar and Jharkhand's political landscape reflected a blend of traditional alliances and emerging youth voices. West Bengal saw a fierce battle between established political forces and new challengers, emphasizing the significance of women voters and first-time participants.",
   "Phase 6": "<strong> Phase 6 (May 25, 2024): </strong> 58 constituencies in 8 states, including Haryana, Delhi, and Jammu & Kashmir, voted. Haryana's agrarian distress and Delhi's urban issues, such as pollution and affordable housing, took center stage. Jammu & Kashmir, participating under challenging circumstances, demonstrated the resilience of its voters amidst security concerns. The inclusion of the national capital amplified the strategic importance of this phase, with debates on governance, civic issues, and infrastructure dominating public discourse.",
   "Phase 7": "<strong> Phase 7 (June 1, 2024): </strong> 57 constituencies in 8 states, including Punjab, Himachal Pradesh, Uttar Pradesh, and Bihar, concluded the election process. Punjab's focus was on farmer welfare and industrial revival, while Himachal Pradesh deliberated on tourism and environmental conservation. Uttar Pradesh, with its massive electorate, saw a culmination of caste and community-driven narratives. This phase symbolized the end of an extensive electoral journey, with voters showcasing their trust in democracy through spirited participation. Campaigns reached their peak, leaving a lasting impact on the political landscape.",
-  summarized: "<strong>Phases Overview:</strong> The 2024 Indian general election was a monumental democratic exercise conducted in seven phases from April 19 to June 1, marking the largest election in history. Over 900 million eligible voters across 543 constituencies exercised their right to elect representatives to the 18th Lok Sabha. This election showcased India's diverse electorate, with participation spanning urban centers, rural villages, tribal areas, and conflict-affected regions. The process began with Phase 1, focusing on 102 constituencies, and progressed through key battleground states such as Gujarat, Uttar Pradesh, West Bengal, and Karnataka. Each phase revealed unique electoral dynamics, reflecting regional aspirations and challenges. High-stakes contests in Haryana and Delhi during later phases highlighted the strategic importance of urban and capital constituencies. The final phase encompassed Punjab, Himachal Pradesh, and Bihar, symbolizing the culmination of intense campaigning and voter engagement. With voter turnout reaching record levels, this election reaffirmed India's democratic ethos. The results, declared on June 4, shaped the path for the next five years of governance, reflecting the people's mandate and aspirations."
+  summarized: "<strong>Phases Overview:</strong> The 2024 Indian general election, held in seven phases from April 19 to June 1, was the largest in history, with over 900 million voters across 543 constituencies. Showcasing India's diverse electorate, it spanned urban centers, rural areas, tribal regions, and conflict zones. Starting with 102 constituencies in Phase 1, it traversed key battlegrounds like Gujarat, Uttar Pradesh, and West Bengal. Later phases highlighted urban and strategic constituencies in Haryana, Delhi, and Punjab. With record voter turnout, the results, declared on June 4, reflected the people's aspirations for the next five years of governance."
 };
 
 const data = [
@@ -283,36 +283,38 @@ svg
       .style("font-weight", "bold")
       .text("Voter Turnout (%)");
 
-    svg
-      .append("text")
-      .attr("x", width / 2)
-      .attr("y", margin.top / 4)
-      .attr("text-anchor", "middle")
-      .style("font-size", "16px")
-      .style("font-weight", "bold")
-      .attr("class", "h9") // Add this line to assign the h10 class
-      .text("Election Insights: Voter Turnout by Phase");
+    // svg
+    //   .append("text")
+    //   .attr("x", width / 2)
+    //   .attr("y", margin.top / 4)
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", "16px")
+    //   .style("font-weight", "bold")
+    //   .attr("class", "h9") // Add this line to assign the h10 class
+    //   .text("Election Insights: Voter Turnout by Phase");
   }, []);
 
   return (
+    <><h9 style={{marginLeft: "50px"}}>Election Insights: Voter Turnout by Phase</h9>
     <div style={{ display: 'flex', width: '100%' }}>
       <svg ref={svgRef}></svg>
-      <div 
+      <h10
         ref={descriptionRef}
         style={{
-          width: '400px', 
+          width: '400px',
           // padding: '20px', 
           // paddingTop: '7%',
           paddingLeft: '5%',
-          fontSize: '14px', 
-          lineHeight: '1.5', 
+          marginTop:'7%',
+          fontSize: '14px',
+          lineHeight: '1.5',
           opacity: 1,
           transition: 'opacity 0.5s'
         }}
       >
 
-      </div>
-    </div>
+      </h10>
+    </div></>
   );
 };
 

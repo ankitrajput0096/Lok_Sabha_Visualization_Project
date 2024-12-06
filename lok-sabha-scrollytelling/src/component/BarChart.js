@@ -563,7 +563,11 @@ import * as d3 from "d3";
 const styles = {
   graphicContainer: {
     padding: "7vh 4vw 7vh",
-    display: "flex",
+    justifyContent: "space-between",
+    display: "flex"
+  },
+  graphicContainers: {
+    padding: "7vh 4vw 7vh",
     justifyContent: "space-between",
   },
   graphic: {
@@ -571,22 +575,36 @@ const styles = {
     position: "sticky",
     width: "100%",
     height: "75vh",
-    top: "10vh",
+    top: "20vh",
     paddingLeft: "5%", // Added paddingLeft
+    paddingTop:"9%"
   },
   scroller: {
     flexBasis: "30%",
     paddingLeft: "20px",
   },
   step: {
-    margin: "0 auto 3rem auto",
-    padding: "120px 0",
-    "& p": {
-      textAlign: "center",
-      padding: "1rem",
-      fontSize: "16px",
+    margin: '0 auto 3rem auto',
+    padding: '180px 0',
+    '& p': {
+      textAlign: 'center',
+      padding: '1rem',
+      fontSize: '1.3rem',
       margin: 0,
     },
+    '&:last-child': {
+      marginBottom: '200px',
+    },
+  },
+  stickyHeading: {
+    position: "sticky",
+    top: "0px", // Adjust to ensure it stays at the top
+    zIndex: 10, // Ensure it is above other elements
+    background: "white", // Optional, ensures text is clear
+    textAlign: "center",
+    fontWeight: "bold",
+    padding: "10px 0",
+    fontSize: "18px",
   },
 };
 
@@ -595,25 +613,24 @@ class Demo extends PureComponent {
     currentStep: 0,
     steps: [0, 10, 20, 30, 40, 50, 60, 70],
   };
-
   svgRef = React.createRef();
   chartData = [];
   events = [
-    { month: "October 2023", BJP: 37, "IND Alliance": 41, Others: 22 },
-    { month: "November 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
-    { month: "December 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
-    { month: "January 2024", BJP: 38, "IND Alliance": 42, Others: 20 },
-    { month: "February 2024", BJP: 35, "IND Alliance": 45, Others: 20 },
-    { month: "March 2024", BJP: 37, "IND Alliance": 43, Others: 20 },
-    { month: "April 2024", BJP: 40, "IND Alliance": 38, Others: 22 },
+    { month: "Oct 2023", BJP: 37, "IND Alliance": 41, Others: 22 },
+    { month: "Nov 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
+    { month: "Dec 2023", BJP: 38, "IND Alliance": 40, Others: 22 },
+    { month: "Jan 2024", BJP: 38, "IND Alliance": 42, Others: 20 },
+    { month: "Feb 2024", BJP: 35, "IND Alliance": 45, Others: 20 },
+    { month: "Mar 2024", BJP: 37, "IND Alliance": 43, Others: 20 },
+    { month: "Apr 2024", BJP: 40, "IND Alliance": 38, Others: 22 },
     { month: "May 2024", BJP: 40, "IND Alliance": 38, Others: 22 },
   ];
 
+ 
   componentDidMount() {
     this.createChart();
-    if(this.state.steps==0)
-    {
-    this.updateChart(0); // Ensure the first month is displayed by default
+    if (this.state.steps === 0) {
+      this.updateChart(0); // Ensure the first month is displayed by default
     }
   }
 
@@ -625,50 +642,52 @@ class Demo extends PureComponent {
 
   createChart() {
     const margin = { top: 40, right: 30, bottom: 80, left: 60 };
-    const width = 800 - margin.left - margin.right;
+    const width = 850 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
-
+  
     this.width = width;
     this.height = height;
-
+  
     this.x = d3.scaleBand().range([0, width]).padding(0.05);
     this.y = d3.scaleLinear().domain([0, 50]).range([height, 0]);
-
+  
     this.svg = d3
       .select(this.svgRef.current)
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
-
+  
     // X-axis
     this.xAxisGroup = this.svg
       .append("g")
       .attr("transform", `translate(0,${height})`)
-      .call(d3.axisBottom(this.x).tickSize(0));
-
+      .call(d3.axisBottom(this.x).tickSize(0))
+      .style("font-size", "14px");
+  
     // Style x-axis ticks
-    this.xAxisGroup.selectAll("text")
+    this.xAxisGroup
+      .selectAll("text")
       .style("font-size", "14px") // Increase font size for x-axis ticks
       .style("font-weight", "bold"); // Make x-axis ticks bold
-
+  
     // Y-axis
     this.svg
       .append("g")
       .call(d3.axisLeft(this.y))
       .selectAll("text")
-      .style("font-size", "12px") // Increase font size for y-axis ticks
-
+      .style("font-size", "14px"); // Increase font size for y-axis ticks
+  
     // X-axis label
     this.svg
       .append("text")
       .attr("x", width / 2)
-      .attr("y", height + 35) // Adjusted position for better alignment
+      .attr("y", height + 45) // Adjusted position for better alignment
       .attr("text-anchor", "middle")
       .style("font-size", "14px") // Increased font size
       .style("font-weight", "bold") // Made text bold
       .text("Pre-Poll Survey Timeline");
-
+  
     // Y-axis label
     this.svg
       .append("text")
@@ -679,7 +698,50 @@ class Demo extends PureComponent {
       .style("font-size", "14px") // Increased font size
       .style("font-weight", "bold") // Made text bold
       .text("Polling Percentage (%)");
-}
+  
+    // Legend data
+    const legendData = [
+      { party: "BJP", color: "#ff7f00" },
+      { party: "IND Alliance", color: "#1f77b4" },
+      { party: "Others", color: "#6c757d" },
+    ];
+  
+    // Add legend group
+    const legend = this.svg
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(${width - 70}, ${-margin.top})`); // Top-right corner
+  
+    // Add legend items
+    legend
+      .selectAll(".legend-item")
+      .data(legendData)
+      .enter()
+      .append("g")
+      .attr("class", "legend-item")
+      .attr("transform", (d, i) => `translate(0, ${i * 20})`) // Vertical spacing
+      .each(function (d) {
+        const item = d3.select(this);
+        // Add legend color box
+        item
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 14)
+          .attr("height", 14)
+          .attr("fill", d.color);
+  
+        // Add legend text
+        item
+          .append("text")
+          .attr("x", 20)
+          .attr("y", 10)
+          .attr("text-anchor", "start")
+          .style("font-size", "14px")
+          .text(d.party);
+      });
+  }
+  
 
 
   updateChart(step) {
@@ -699,7 +761,7 @@ class Demo extends PureComponent {
     this.xAxisGroup
       .transition()
       .duration(500)
-      .call(d3.axisBottom(this.x).tickSize(0));
+      .call(d3.axisBottom(this.x).tickSize(5));
 
     const parties = ["BJP", "IND Alliance", "Others"];
     const colors = { BJP: "#ff7f00", "IND Alliance": "#1f77b4", Others: "#6c757d" };
@@ -837,21 +899,24 @@ if (currentStep === 0) {
 
     return (
       <div>
+          <div className={classes.stickyHeading}>
+        Shaping India's 2024 Parliamentary Mandate
+      </div> 
         <div className={classes.graphicContainer}>
           <div className={classes.graphic}>
             <svg ref={this.svgRef}></svg>
           </div>
-          <div className={classes.scroller}>
-            <Scrollama onStepEnter={this.onStepEnter} offset={0.6}>
+          <h10 className={classes.scroller}>
+          <Scrollama onStepEnter={this.onStepEnter} offset={0.6}>
               {steps.map((value, index) => (
                 <Step data={value} key={value}>
-                  <div className={classes.step}>
-                    <h6>{description}</h6>
-                  </div>
+                  <div className="text-left">
+                   <div className={classes.step}>{description}</div>
+                   </div>
                 </Step>
               ))}
             </Scrollama>
-          </div>
+          </h10>
         </div>
       </div>
     );
