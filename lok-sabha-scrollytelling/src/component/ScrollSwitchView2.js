@@ -96,8 +96,7 @@ class Demo extends PureComponent {
                      <h10>
                         Highlights: Re-polling was necessitated in certain areas due to
                         incidents of violence and technical issues. For instance, 11 polling
-                        stations in Inner Manipur underwent re-polling on April 22, and eight
-                        stations in Arunachal Pradesh on April 24.
+                        stations in Inner Manipur underwent re-polling on April 22.
                         </h10>
                     )}
                     {value === 2 && (
