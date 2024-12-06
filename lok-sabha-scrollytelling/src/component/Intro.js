@@ -11,8 +11,10 @@ const styles = {
     color: 'black',
   },
   graphic: {
+    // borderRadius: '20px', /* Smooth corners */
+    marginTop: '70px',
     position: 'sticky',
-    height: '90vh',
+    height: '85vh',
     display: 'flex',
     // alignItems: 'center',
     justifyContent: 'center',

@@ -54,6 +54,7 @@ const styles = {
     justifyContent: 'center',
     overflow: 'hidden', // Ensure content does not overflow the container
     '& img': {
+      borderRadius: '20px', /* Smooth corners */
       maxWidth: '110%',
       maxHeight: '110%',
       objectFit: 'contain', // Ensure the image scales while maintaining aspect ratio
