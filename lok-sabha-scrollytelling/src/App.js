@@ -28,21 +28,24 @@ function App() {
           <Introduction />
         </div>
       <main>
+      <div className="">
+          <BarChart />
+        </div>
+        <div className="">
+          <ImagesOFCartoon />
+        </div>
+        <section className="section timeline-section">
+          <Timeline />
+        </section>
+
         <section className="section BubbleChart" style={{marginTop:"5%"}}>
           <BubbleChart />
         </section>
         <div className="">
           <BubbleChartScrolly />
         </div>
-        <section className="section timeline-section">
-          <Timeline />
-        </section>
-        <div className="">
-          <BarChart />
-        </div>
-        <div className="">
-          <ImagesOFCartoon />
-        </div>
+
+
         <section className="section piechart">
           <PieChart />
         </section>
