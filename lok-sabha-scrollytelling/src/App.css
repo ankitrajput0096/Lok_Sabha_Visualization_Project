@@ -47,6 +47,14 @@ body, html {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+.timeline-section {
+  min-height: 50vh !important;
+  padding: 4rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
 .section.active {
   opacity: 1;
   transform: translateY(0);

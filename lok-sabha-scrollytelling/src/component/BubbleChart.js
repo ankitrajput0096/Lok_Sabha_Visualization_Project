@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import phaseWiseVotingData from "../data/phaseWiseVotingData.csv";
 
 const BubbleChart = () => {
   const svgRef = useRef();
   const descriptionRef = useRef();
+  const [data, setData] = useState([]);
 
   const phaseDescriptions = {
   "Phase 1": "<strong> Phase 1 (April 19, 2024): </strong> 102 constituencies across 20 states, including Andhra Pradesh, Telangana, and Odisha, voted. This phase also included assembly elections in some states, marking a crucial start to the world's largest democratic exercise. The phase was marked by robust campaigning, focusing on issues like rural development, employment generation, and education. Voters from tribal regions and remote areas showcased significant enthusiasm, overcoming logistical challenges to participate. This phase also highlighted regional aspirations, with local parties playing a decisive role in influencing voter sentiments.",
@@ -16,57 +18,18 @@ const BubbleChart = () => {
   summarized: "<strong>Phases Overview:</strong> The 2024 Indian general election, held in seven phases from April 19 to June 1, was the largest in history, with over 900 million voters across 543 constituencies. Showcasing India's diverse electorate, it spanned urban centers, rural areas, tribal regions, and conflict zones. Starting with 102 constituencies in Phase 1, it traversed key battlegrounds like Gujarat, Uttar Pradesh, and West Bengal. Later phases highlighted urban and strategic constituencies in Haryana, Delhi, and Punjab. With record voter turnout, the results, declared on June 4, reflected the people's aspirations for the next five years of governance."
 };
 
-const data = [
-  {
-    phase: "Phase 1",
-    totalVotes: 154000000, 
-    voterTurnout: 66.14, 
-    totalVotesPolled: 101860000, 
-    constituencies: 102, 
-  },
-  {
-    phase: "Phase 2",
-    totalVotes: 132000000,
-    voterTurnout: 66.71,
-    totalVotesPolled: 88057200,
-    constituencies: 88,
-  },
-  {
-    phase: "Phase 3",
-    totalVotes: 172400000,
-    voterTurnout: 65.68,
-    totalVotesPolled: 113235200,
-    constituencies: 94,
-  },
-  {
-    phase: "Phase 4",
-    totalVotes: 145000000,
-    voterTurnout: 69.16,
-    totalVotesPolled: 100282000,
-    constituencies: 96,
-  },
-  {
-    phase: "Phase 5",
-    totalVotes: 80000000,
-    voterTurnout: 62.2,
-    totalVotesPolled: 49760000,
-    constituencies: 49,
-  },
-  {
-    phase: "Phase 6",
-    totalVotes: 125000000,
-    voterTurnout: 63.37,
-    totalVotesPolled: 79212500,
-    constituencies: 58,
-  },
-  {
-    phase: "Phase 7",
-    totalVotes: 123000000,
-    voterTurnout: 63.88,
-    totalVotesPolled: 78572400,
-    constituencies: 57,
-  }
-];
+useEffect(() => {
+  d3.csv(phaseWiseVotingData).then((csvData) => {
+    const formattedData = csvData.map((d) => ({
+      phase: d.phase,
+      totalVotes: +d.totalVotes,
+      voterTurnout: +d.voterTurnout,
+      totalVotesPolled: +d.totalVotesPolled,
+      constituencies: +d.constituencies
+    }));
+    setData(formattedData);
+  });
+}, []);
 
 
   useEffect(() => {
@@ -282,17 +245,7 @@ svg
       .attr("transform", "rotate(-90)")
       .style("font-weight", "bold")
       .text("Voter Turnout (%)");
-
-    // svg
-    //   .append("text")
-    //   .attr("x", width / 2)
-    //   .attr("y", margin.top / 4)
-    //   .attr("text-anchor", "middle")
-    //   .style("font-size", "16px")
-    //   .style("font-weight", "bold")
-    //   .attr("class", "h9") // Add this line to assign the h10 class
-    //   .text("Election Insights: Voter Turnout by Phase");
-  }, []);
+  }, [data]);
 
   return (
     <><h9 style={{marginLeft: "50px"}}>Election Insights: Voter Turnout by Phase</h9>
@@ -302,8 +255,6 @@ svg
         ref={descriptionRef}
         style={{
           width: '400px',
-          // padding: '20px', 
-          // paddingTop: '7%',
           paddingLeft: '5%',
           marginTop:'7%',
           fontSize: '14px',

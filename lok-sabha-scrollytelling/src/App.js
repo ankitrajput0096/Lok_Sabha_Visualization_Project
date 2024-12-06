@@ -34,12 +34,9 @@ function App() {
         <div className="">
           <BubbleChartScrolly />
         </div>
-        <section className="section timeline">
+        <section className="section timeline-section">
           <Timeline />
         </section>
-        {/* <section className="section barchart">
-          <BarChart />
-        </section> */}
         <div className="">
           <BarChart />
         </div>
