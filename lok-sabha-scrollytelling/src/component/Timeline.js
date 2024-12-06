@@ -64,7 +64,7 @@ const timelineLine = svg.append("line")
     .attr("y1", timelineY)
     .attr("y2", timelineY)
     .attr("stroke", "black")
-    .attr("stroke-width", 2);
+    .attr("stroke-width", 0.5);
 
 
 const circleRadius = 8;
