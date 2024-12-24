@@ -2,6 +2,7 @@
   "name": "lok-sabha-scrollytelling",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ankitrajput0096.github.io/Lok_Sabha_Visualization_Project",
   "dependencies": {
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
