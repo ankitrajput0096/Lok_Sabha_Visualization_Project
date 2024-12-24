@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/Lok_Sabha_Visualization_Project/static/css/main.3ddb9324.css",
-    "main.js": "/Lok_Sabha_Visualization_Project/static/js/main.1da42c9e.js",
-    "static/js/453.ebafc58c.chunk.js": "/Lok_Sabha_Visualization_Project/static/js/453.ebafc58c.chunk.js",
-    "static/media/states.geojson": "/Lok_Sabha_Visualization_Project/static/media/states.e5b8da6b7e30c636ceec.geojson",
-    "static/media/photo4.jpg": "/Lok_Sabha_Visualization_Project/static/media/photo4.57cfb8caaf597fb5c848.jpg",
-    "static/media/Picture2.png": "/Lok_Sabha_Visualization_Project/static/media/Picture2.a2c414ba5df339ffafd9.png",
-    "static/media/photo24.avif": "/Lok_Sabha_Visualization_Project/static/media/photo24.42fe29f1acbd5a3c6438.avif",
-    "static/media/photo6.jpg": "/Lok_Sabha_Visualization_Project/static/media/photo6.a91bdee0f0476c226dcb.jpg",
-    "static/media/Picture4.jpg": "/Lok_Sabha_Visualization_Project/static/media/Picture4.fac1b6c198231bf5b06a.jpg",
-    "static/media/photo23.jpg": "/Lok_Sabha_Visualization_Project/static/media/photo23.442d4563528d6b8a14fb.jpg",
-    "static/media/Election2024cartoon.jpg": "/Lok_Sabha_Visualization_Project/static/media/Election2024cartoon.491a907d6dc1ec392b79.jpg",
-    "static/media/Picture1.jpg": "/Lok_Sabha_Visualization_Project/static/media/Picture1.2a96162e68fd31c383d6.jpg",
-    "static/media/photo10.jpg": "/Lok_Sabha_Visualization_Project/static/media/photo10.3b2dbbea90c5e70f2db0.jpg",
-    "static/media/photo8.avif": "/Lok_Sabha_Visualization_Project/static/media/photo8.9a29986f06e8cf0d4522.avif",
-    "static/media/preprocessedStateWinnerDataForChoroplethMap.csv": "/Lok_Sabha_Visualization_Project/static/media/preprocessedStateWinnerDataForChoroplethMap.34e2a63586ab03b31a1d.csv",
-    "index.html": "/Lok_Sabha_Visualization_Project/index.html",
-    "static/media/phaseWiseVotingData.csv": "/Lok_Sabha_Visualization_Project/static/media/phaseWiseVotingData.b705ebd34850622aba61.csv",
-    "static/media/monthWiseData.csv": "/Lok_Sabha_Visualization_Project/static/media/monthWiseData.42b90c718b1519564bc3.csv",
-    "main.3ddb9324.css.map": "/Lok_Sabha_Visualization_Project/static/css/main.3ddb9324.css.map",
-    "main.1da42c9e.js.map": "/Lok_Sabha_Visualization_Project/static/js/main.1da42c9e.js.map",
-    "453.ebafc58c.chunk.js.map": "/Lok_Sabha_Visualization_Project/static/js/453.ebafc58c.chunk.js.map"
+    "main.css": "/static/css/main.3ddb9324.css",
+    "main.js": "/static/js/main.26e9e8b6.js",
+    "static/js/453.ebafc58c.chunk.js": "/static/js/453.ebafc58c.chunk.js",
+    "static/media/states.geojson": "/static/media/states.e5b8da6b7e30c636ceec.geojson",
+    "static/media/photo4.jpg": "/static/media/photo4.57cfb8caaf597fb5c848.jpg",
+    "static/media/Picture2.png": "/static/media/Picture2.a2c414ba5df339ffafd9.png",
+    "static/media/photo24.avif": "/static/media/photo24.42fe29f1acbd5a3c6438.avif",
+    "static/media/photo6.jpg": "/static/media/photo6.a91bdee0f0476c226dcb.jpg",
+    "static/media/Picture4.jpg": "/static/media/Picture4.fac1b6c198231bf5b06a.jpg",
+    "static/media/photo23.jpg": "/static/media/photo23.442d4563528d6b8a14fb.jpg",
+    "static/media/Election2024cartoon.jpg": "/static/media/Election2024cartoon.491a907d6dc1ec392b79.jpg",
+    "static/media/Picture1.jpg": "/static/media/Picture1.2a96162e68fd31c383d6.jpg",
+    "static/media/photo10.jpg": "/static/media/photo10.3b2dbbea90c5e70f2db0.jpg",
+    "static/media/photo8.avif": "/static/media/photo8.9a29986f06e8cf0d4522.avif",
+    "static/media/preprocessedStateWinnerDataForChoroplethMap.csv": "/static/media/preprocessedStateWinnerDataForChoroplethMap.34e2a63586ab03b31a1d.csv",
+    "index.html": "/index.html",
+    "static/media/phaseWiseVotingData.csv": "/static/media/phaseWiseVotingData.b705ebd34850622aba61.csv",
+    "static/media/monthWiseData.csv": "/static/media/monthWiseData.42b90c718b1519564bc3.csv",
+    "main.3ddb9324.css.map": "/static/css/main.3ddb9324.css.map",
+    "main.26e9e8b6.js.map": "/static/js/main.26e9e8b6.js.map",
+    "453.ebafc58c.chunk.js.map": "/static/js/453.ebafc58c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3ddb9324.css",
-    "static/js/main.1da42c9e.js"
+    "static/js/main.26e9e8b6.js"
   ]
 }
