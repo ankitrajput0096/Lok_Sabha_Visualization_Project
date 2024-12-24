@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer style={styles.footerContainer}>
       <div style={styles.content}>
-        <h10>&copy; {new Date().getFullYear()} Visualization Project. All rights reserved.</h10>
+        <h10>{new Date().getFullYear()} Visualization Project</h10>
         <br></br>
         <h10>Abhay Jogenipalli | Hemanth Koneti | Ron George | Ankit Rajput | Pushkar Talwalkar</h10>
       </div>
