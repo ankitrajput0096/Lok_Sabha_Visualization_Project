@@ -34,9 +34,9 @@ function App() {
         <div className="">
           <ImagesOFCartoon />
         </div>
-        <section className="section timeline-section">
+        {/* <section className="section timeline-section">
           <Timeline />
-        </section>
+        </section> */}
 
         <section className="section BubbleChart" style={{marginTop:"5%"}}>
           <BubbleChart />
