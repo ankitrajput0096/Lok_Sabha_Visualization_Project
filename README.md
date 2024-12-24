@@ -2,6 +2,8 @@
 
 This project is a visualization tool built with React and D3.js that allows users to analyze the distribution of votes among major political parties in the 2024 Lok Sabha elections. The data is creatively visualized through interactive visualizations, such as Bar charts, Bubble graphs, Pie charts and Thematic Maps.
 
+## Website - [Link](https://ankitrajput0096.github.io/Lok_Sabha_Visualization_Project/)
+
 ## About the Project
 
 In this project, we examine the story of Lok Sabha Elections 2024. We do so by examining the state-level and nation-wide data that is publically available. From the data, we create various interactive visualizations to help our users understand both - the grassroots view & bird's eye view of the Lok Sabha Elections 2024. 
